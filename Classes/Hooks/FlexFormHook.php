@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\Eventnews\Hooks;
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FlexFormHook
@@ -17,7 +18,7 @@ class FlexFormHook
     public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table)
     {
         if ($table === 'tt_content' && $row['CType'] === 'list' && $row['list_type'] === 'news_pi1') {
-            $file = PATH_site . 'typo3conf/ext/eventnews/Configuration/Flexforms/flexform_eventnews.xml';
+            $file = ExtensionManagementUtility::extPath('eventnews') . 'Configuration/Flexforms/flexform_eventnews.xml';
             $content = file_get_contents($file);
             if ($content) {
                 $newField = GeneralUtility::xml2array($content);
@@ -36,7 +37,7 @@ class FlexFormHook
     public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier)
     {
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
-            $file = PATH_site . 'typo3conf/ext/eventnews/Configuration/Flexforms/flexform_eventnews.xml';
+            $file = ExtensionManagementUtility::extPath('eventnews') . 'Configuration/Flexforms/flexform_eventnews.xml';
             $content = file_get_contents($file);
             if ($content) {
                 $newField = GeneralUtility::xml2array($content);
