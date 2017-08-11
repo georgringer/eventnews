@@ -2,8 +2,9 @@
 
 namespace GeorgRinger\Eventnews\Hooks;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 
 class FlexFormHook
 {
