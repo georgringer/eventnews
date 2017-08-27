@@ -22,6 +22,15 @@ class AbstractRepository extends Repository
 {
 
     /**
+     * Set default sorting
+     *
+     * @var array
+     */
+    protected $defaultOrderings = [
+        'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
+    ];
+
+    /**
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findAll()
