@@ -42,6 +42,14 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         /** @var \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository */
         $categoryRepository = $this->objectManager->get(\GeorgRinger\News\Domain\Repository\CategoryRepository::class);
+        $categoryRepository->setDefaultOrderings(
+            [
+                'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+            ]
+        );
+
+        /** @var \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository */
+        $categoryRepository = $this->objectManager->get(\GeorgRinger\News\Domain\Repository\CategoryRepository::class);
         /** @var \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository */
         $tagRepository = $this->objectManager->get(\GeorgRinger\News\Domain\Repository\TagRepository::class);
         /** @var \GeorgRinger\Eventnews\Domain\Repository\LocationRepository $locationRepository */
