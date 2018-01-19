@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-01-01T11:47:18Z" product-name="eventnews">
+		<header/>
+		<body>
+			<trans-unit id="eventnews-folder" xml:space="preserve">
+				<source>EventNews</source>
+			</trans-unit>
+			<trans-unit id="tab_lable" xml:space="preserve">
+				<source>Events</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

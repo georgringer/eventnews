@@ -2,3 +2,6 @@
 ###########################
 # cat=records/enable/103; type=boolean; label=Override Administration module label;Change the naming of the module
 overrideAdministrationModuleLabel = 0
+
+# cat=backend/layout; type=boolean; label=Show Event fields in seperate Tab in Backend
+showEventSettingsAsTab = 1

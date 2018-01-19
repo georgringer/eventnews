@@ -40,6 +40,19 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRe
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['eventnews'] =
     \GeorgRinger\Eventnews\Hooks\Backend\EventNewsDataHandlerHook::class;
 
+if (TYPO3_MODE === 'BE') {
+	$icons = [
+			'apps-pagetree-folder-contains-eventnews' => 'ext-eventnews-folder-tree.svg'
+	];
+	$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+	foreach ($icons as $identifier => $path) {
+		$iconRegistry->registerIcon(
+				$identifier,
+				\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+				['source' => 'EXT:eventnews/Resources/Public/Icons/' . $path]
+				);
+	}
+}
 /***********
  * Extend EXT:news
  */

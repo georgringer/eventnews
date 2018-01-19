@@ -90,5 +90,14 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['palette_event'] = [
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['requestUpdate'] .= ',is_event';
 
+
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $fields);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'is_event,--palette--;;palette_event,', '', 'after:title');
+$emConfiguration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['eventnews']);
+
+if( (bool)$emConfiguration['showEventSettingsAsTab'] ){
+	$tabLable = 'LLL:EXT:eventnews/Resources/Private/Language/locallang_be.xlf:tab_lable';
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', '--div--;'.$tabLable.';;;1-1-1,is_event,--palette--;;palette_event,', '', '');
+}else{
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'is_event,--palette--;;palette_event,', '', 'after:title');
+}
