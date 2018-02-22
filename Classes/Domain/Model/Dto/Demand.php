@@ -22,7 +22,7 @@ class Demand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /** @var string */
     protected $searchDateFrom;
 
-     /** @var string */
+    /** @var string */
     protected $searchDateTo;
 
     public function __construct(array $settings = null)
