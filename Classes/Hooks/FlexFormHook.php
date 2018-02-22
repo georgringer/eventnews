@@ -33,7 +33,7 @@ class FlexFormHook
      * @param array $identifier
      * @return array
      */
-    public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
+    public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier)
     {
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
             $file = PATH_site . 'typo3conf/ext/eventnews/Configuration/Flexforms/flexform_eventnews.xml';
