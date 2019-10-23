@@ -8,7 +8,6 @@ namespace GeorgRinger\Eventnews\ViewHelpers\Filter;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use GeorgRinger\Eventnews\Domain\Model\News;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
