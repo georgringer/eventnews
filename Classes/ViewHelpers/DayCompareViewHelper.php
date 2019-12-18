@@ -8,11 +8,9 @@ namespace GeorgRinger\Eventnews\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use GeorgRinger\Eventnews\Domain\Model\Dto\Demand;
 use GeorgRinger\Eventnews\Domain\Model\News as EventNews;
 use GeorgRinger\News\Domain\Model\News;
-use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
@@ -40,8 +38,7 @@ class DayCompareViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         $found = false;
 
         /** @var Demand $demand */
@@ -69,6 +66,4 @@ class DayCompareViewHelper extends AbstractViewHelper
 
         return $found;
     }
-
-
 }
