@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace GeorgRinger\Eventnews\Tests\Unit\Hooks;
 
 use GeorgRinger\Eventnews\Hooks\FormEngineHook;
-use GeorgRinger\Eventnews\Hooks\IconHook;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class FormEngineHookTest extends BaseTestCase
