@@ -32,6 +32,4 @@ class NewsImportAspectTest extends BaseTestCase
         $this->assertEquals($date, $news->getEventEnd());
         $this->assertEquals('Example Location', $news->getLocationSimple());
     }
-
-
 }

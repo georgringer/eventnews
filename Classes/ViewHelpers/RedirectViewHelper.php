@@ -46,8 +46,7 @@ class RedirectViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         if ($arguments['url']) {
             HttpUtility::redirect($arguments['url']);
         }
