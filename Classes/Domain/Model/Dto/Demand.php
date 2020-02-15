@@ -10,7 +10,6 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 class Demand extends NewsDemand
 {
     const EVENT_RESTRICTION_ONLY_EVENTS = 1;
