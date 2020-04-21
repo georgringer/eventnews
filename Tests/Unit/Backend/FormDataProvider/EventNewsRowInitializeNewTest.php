@@ -29,5 +29,4 @@ class EventNewsRowInitializeNewTest extends BaseTestCase
         $result = $instance->addData($result);
         $this->assertEquals(1, $result['databaseRow']['is_event']);
     }
-
 }
