@@ -29,6 +29,7 @@ class EventNewsRowInitializeNew implements FormDataProviderInterface
 
         if (is_array($result['pageTsConfig']['tx_news.']) && (bool)$result['pageTsConfig']['tx_news.']['newRecordAsEvent']) {
             $result['databaseRow']['is_event'] = 1;
+            $result['databaseRow']['datetime'] = 0;
         }
 
         return $result;
