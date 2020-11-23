@@ -8,8 +8,8 @@ CREATE TABLE tx_eventnews_domain_model_location (
 
 	title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
-	lat double(11,2) DEFAULT '0.00' NOT NULL,
-	lng double(11,2) DEFAULT '0.00' NOT NULL,
+	lat double DEFAULT '0' NOT NULL,
+	lng double DEFAULT '0' NOT NULL,
 	link varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

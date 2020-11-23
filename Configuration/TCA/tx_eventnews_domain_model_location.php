@@ -155,7 +155,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'double2'
+                'eval' => 'trim'
             ]
         ],
         'lng' => [
@@ -164,7 +164,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'double2'
+                'eval' => 'trim'
             ]
         ],
         'link' => [
