@@ -2,12 +2,15 @@
 
 namespace GeorgRinger\Eventnews\Controller;
 
+
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Utility\Cache;
 
 /**
  * Class GeorgRinger\Eventnews\Controller\NewsController
@@ -67,6 +70,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_MONTH_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
+        Cache::addPageCacheTagsByDemandObject($demand);
     }
 
     /**
