@@ -16,6 +16,10 @@
 				<source>Only non events</source>
 			</trans-unit>
 
+			<trans-unit id="flexforms_general.eventFilterByLocation">
+				<source>Filter by location</source>
+			</trans-unit>
+
 			<trans-unit id="filter">
 				<source>Filter</source>
 			</trans-unit>

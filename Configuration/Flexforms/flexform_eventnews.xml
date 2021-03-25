@@ -32,6 +32,23 @@
                 </config>
             </TCEforms>
         </settings.eventRestriction>
+        <settings.eventFilterByLocation>
+            <TCEforms>
+                <label>LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventFilterByLocation</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items>
+                        <numIndex index="0" type="array">
+                            <numIndex index="0"></numIndex>
+                            <numIndex index="1"></numIndex>
+                        </numIndex>
+                    </items>
+                    <foreign_table>tx_eventnews_domain_model_location</foreign_table>
+                    <foreign_table_where>AND {#tx_eventnews_domain_model_location}.{#sys_language_uid} IN (0, -1) ORDER BY title</foreign_table_where>
+                </config>
+            </TCEforms>
+        </settings.eventFilterByLocation>
     </el>
 </ROOT>
 </extra>

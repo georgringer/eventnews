@@ -4,5 +4,6 @@ plugin.tx_news.settings {
 
 	# Unless otherwise flexformed restrict all news plugins to display "news only"
 	eventRestriction = 2
-	overrideFlexformSettingsIfEmpty := addToList(eventRestriction)
+	eventFilterByLocation = 0
+	overrideFlexformSettingsIfEmpty := addToList(eventRestriction, eventFilterByLocation)
 }

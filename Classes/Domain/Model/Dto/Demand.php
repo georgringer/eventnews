@@ -26,6 +26,9 @@ class Demand extends NewsDemand
     protected $eventRestriction;
 
     /** @var int */
+    protected $eventFilterByLocation;
+
+    /** @var int */
     protected $day;
 
     /** @var string */
@@ -40,6 +43,7 @@ class Demand extends NewsDemand
     public function __construct(array $settings = null)
     {
         $this->eventRestriction = $settings['eventRestriction'];
+        $this->eventFilterByLocation = $settings['eventFilterByLocation'];
     }
 
     /**
@@ -88,6 +92,22 @@ class Demand extends NewsDemand
     public function setEventRestriction($eventRestriction)
     {
         $this->eventRestriction = $eventRestriction;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEventFilterByLocation()
+    {
+        return (int)$this->eventFilterByLocation;
+    }
+
+    /**
+     * @param int $eventFilterByLocation
+     */
+    public function setEventFilterByLocation($eventFilterByLocation)
+    {
+        $this->eventFilterByLocation = $eventFilterByLocation;
     }
 
     /**
