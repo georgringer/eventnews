@@ -26,7 +26,7 @@ class Demand extends NewsDemand
     protected $eventRestriction;
 
     /** @var int */
-    protected int $day;
+    protected $day = 0;
 
     /** @var string */
     protected $searchDateFrom;
