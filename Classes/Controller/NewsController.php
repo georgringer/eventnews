@@ -2,6 +2,12 @@
 
 namespace GeorgRinger\Eventnews\Controller;
 
+use GeorgRinger\Eventnews\Domain\Repository\LocationRepository;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use GeorgRinger\News\Domain\Repository\TagRepository;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
  *
@@ -15,6 +21,30 @@ namespace GeorgRinger\Eventnews\Controller;
 class NewsController extends \GeorgRinger\News\Controller\NewsController
 {
     const SIGNAL_NEWS_MONTH_ACTION = 'monthAction';
+
+    /**
+     * NewsController constructor.
+     * @param NewsRepository $newsRepository
+     * @param CategoryRepository $categoryRepository
+     * @param TagRepository $tagRepository
+     * @param ConfigurationManagerInterface $configurationManager
+     * @param LocationRepository $locationRepository
+     */
+    public function __construct(
+        NewsRepository $newsRepository,
+        CategoryRepository $categoryRepository,
+        TagRepository $tagRepository,
+        ConfigurationManagerInterface $configurationManager,
+        LocationRepository $locationRepository
+    )
+    {
+        $hat = 'kat';
+        $this->newsRepository = $newsRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->tagRepository = $tagRepository;
+        $this->configurationManager = $configurationManager;
+    }
+
 
     /**
      * Month view
@@ -48,14 +78,13 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         $organizerPidList = $this->settings['startingpointOrganizer'] ?: $this->settings['startingpoint'];
         $locationPidList = $this->settings['startingpointLocation'] ?: $this->settings['startingpoint'];
-
         $assignedValues = [
             'search' => $search,
             'news' => $newsRecordsWithDaySupport,
             'newsWithNoDaySupport' => $newsRecordsWithNoDaySupport,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-            'currentPageId' => $GLOBALS['TSFE']->id,
+            'currentPageId' => $this->request->getAttribute('routing')->getPageId(),
             'allOrganizers' => $organizerRepository->findByStartingPoint($organizerPidList),
             'allLocations' => $locationRepository->findByStartingPoint($locationPidList),
             'allCategories' => empty($categories) ? [] : $categoryRepository->findByIdList($categories),
