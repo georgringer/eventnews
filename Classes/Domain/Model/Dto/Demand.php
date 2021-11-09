@@ -26,7 +26,7 @@ class Demand extends NewsDemand
     protected $eventRestriction;
 
     /** @var int */
-    protected $day;
+    protected int $day;
 
     /** @var string */
     protected $searchDateFrom;
@@ -93,15 +93,16 @@ class Demand extends NewsDemand
     /**
      * @return int
      */
-    public function getDay()
+    public function getDay():int
     {
         return $this->day;
     }
 
     /**
      * @param int $day
+     * @return NewsDemand
      */
-    public function setDay($day)
+    public function setDay(int $day): NewsDemand
     {
         $this->day = $day;
     }
