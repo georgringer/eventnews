@@ -2,12 +2,6 @@
 
 namespace GeorgRinger\Eventnews\Controller;
 
-use GeorgRinger\Eventnews\Domain\Repository\LocationRepository;
-use GeorgRinger\News\Domain\Repository\CategoryRepository;
-use GeorgRinger\News\Domain\Repository\NewsRepository;
-use GeorgRinger\News\Domain\Repository\TagRepository;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
  *
@@ -24,21 +18,20 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
     /**
      * NewsController constructor.
-     * @param NewsRepository $newsRepository
-     * @param CategoryRepository $categoryRepository
-     * @param TagRepository $tagRepository
-     * @param ConfigurationManagerInterface $configurationManager
-     * @param LocationRepository $locationRepository
+     * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
+     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
+     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
+     * @param \GeorgRinger\News\Domain\Repository\LocationRepository $locationRepository
      */
     public function __construct(
-        NewsRepository $newsRepository,
-        CategoryRepository $categoryRepository,
-        TagRepository $tagRepository,
-        ConfigurationManagerInterface $configurationManager,
-        LocationRepository $locationRepository
+        \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository,
+        \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository,
+        \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository,
+        \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager,
+        \GeorgRinger\News\Domain\Repository\LocationRepository $locationRepository
     )
     {
-        $hat = 'kat';
         $this->newsRepository = $newsRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
