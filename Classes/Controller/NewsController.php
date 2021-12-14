@@ -17,25 +17,19 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     const SIGNAL_NEWS_MONTH_ACTION = 'monthAction';
 
     /**
+     * @var \GeorgRinger\EventNews\Domain\Repository\LocationRepository
+     */
+    protected $locationRepository;
+
+    /**
      * NewsController constructor.
-     * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-     * @param \GeorgRinger\News\Domain\Repository\LocationRepository $locationRepository
+     * @param \GeorgRinger\EventNews\Domain\Repository\LocationRepository $locationRepository
      */
     public function __construct(
-        \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository,
-        \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository,
-        \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository,
-        \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager,
-        \GeorgRinger\News\Domain\Repository\LocationRepository $locationRepository
+        $locationRepository = null
     )
     {
-        $this->newsRepository = $newsRepository;
-        $this->categoryRepository = $categoryRepository;
-        $this->tagRepository = $tagRepository;
-        $this->configurationManager = $configurationManager;
+        $this->locationRepository = $locationRepository;
     }
 
 
