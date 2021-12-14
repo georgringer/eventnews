@@ -17,7 +17,7 @@
     ],
     "license": ["GPL-2.0-or-later"],
     "require": {
-        "georgringer/news": "^9",
+        "georgringer/news": "^9.1",
         "typo3/cms-core": "^10.4 || ^11.5"
     },
     "require-dev": {
