@@ -7,3 +7,5 @@ services:
   GeorgRinger\Eventnews\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
+
+  GeorgRinger\News\Controller\NewsController: '@GeorgRinger\Eventnews\Controller\NewsController'
