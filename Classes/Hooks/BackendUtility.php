@@ -24,12 +24,5 @@ class BackendUtility extends \GeorgRinger\News\Hooks\BackendUtility
 
             $this->deleteFromStructure($params['dataStructure'], $removedFields);
         }
-        if ($params['selectedView'] === 'News->month' || $params['selectedView'] === 'News->list') {
-            $eventRestrictionXml = GeneralUtility::xml2array($this->eventRestrictionField);
-            if (is_array($params['dataStructure']['sheets']['sDEF']['ROOT']['el'])) {
-                $params['dataStructure']['sheets']['sDEF']['ROOT']['el'] = $params['dataStructure']['sheets']['sDEF']['ROOT']['el'] + [
-                    'settings.eventRestriction' => $eventRestrictionXml];
-            }
-        }
     }
 }
