@@ -6,6 +6,9 @@ defined('TYPO3_MODE') or die();
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems']['News->month']
     = 'Month view';
 
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['tx_eventnews_updateFlexforms']
+    = \GeorgRinger\Eventnews\Update\UpdatePluginFlexforms::class;
+
 /***********
  * Hooks
  */
