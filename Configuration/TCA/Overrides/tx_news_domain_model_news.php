@@ -1,7 +1,5 @@
 <?php
 
-defined('TYPO3_MODE') or die();
-
 $fields = [
     'is_event' => [
         'exclude' => true,

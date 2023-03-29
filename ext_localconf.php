@@ -1,7 +1,5 @@
 <?php
 
-defined('TYPO3_MODE') or die();
-
 // Add new controller/action
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems']['News->month']
     = 'Month view';
