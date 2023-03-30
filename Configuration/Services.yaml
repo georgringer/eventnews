@@ -7,3 +7,9 @@ services:
   GeorgRinger\Eventnews\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
+
+  GeorgRinger\Eventnews\EventListener\NewsImportListener:
+    tags:
+      - name: event.listener
+        identifier: 'eventnews-newsimportlistener'
+        event: GeorgRinger\News\Event\NewsImportPostHydrateEvent

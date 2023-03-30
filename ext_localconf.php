@@ -40,16 +40,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
 
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News'][] = 'eventnews';
 
-\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class)->connect(
-    \GeorgRinger\News\Domain\Service\NewsImportService::class,
-    'postHydrate',
-    \GeorgRinger\Eventnews\Aspect\NewsImportAspect::class,
-    'postHydrate'
-);
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
-    @import \'EXT:eventnews/Configuration/TSconfig/ContentElementWizard.tsconfig\'
-    ');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:eventnews/Configuration/TSconfig/ContentElementWizard.tsconfig\'');
 
 // override language files of news
 $overrideModuleLable = (bool)\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('eventnews', 'overrideAdministrationModuleLabel');
