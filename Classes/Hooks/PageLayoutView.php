@@ -1,6 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace GeorgRinger\Eventnews\Hooks;
+
+use GeorgRinger\News\Hooks\PluginPreviewRenderer;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
@@ -8,23 +12,15 @@ namespace GeorgRinger\Eventnews\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-/**
- * Class PageLayoutView
- *
- */
 class PageLayoutView
 {
 
     /**
      * Provide an extension summary for the month selection
-     *
-     * @param array $params
-     * @param \GeorgRinger\News\Hooks\PageLayoutView $pageLayout
      */
-    public function extensionSummary(array $params, \GeorgRinger\News\Hooks\PageLayoutView $pageLayout)
+    public function extensionSummary(array $params, PluginPreviewRenderer $pageLayout)
     {
-        if ($params['action'] === 'news_month') {
+        if ($params['row']['CType'] === 'eventnews_newsmonth') {
             $pageLayout->getStartingPoint();
             $pageLayout->getTimeRestrictionSetting();
             $pageLayout->getTopNewsRestrictionSetting();
@@ -41,18 +37,21 @@ class PageLayoutView
 
     /**
      * Show the event restriction
-     *
-     * @param \GeorgRinger\News\Hooks\PageLayoutView $cmsLayout
-     * @return void
      */
-    protected function getEventRestrictionSetting(\GeorgRinger\News\Hooks\PageLayoutView $cmsLayout)
+    protected function getEventRestrictionSetting(PluginPreviewRenderer $renderer)
     {
-        $eventRestriction = (int)$cmsLayout->getFieldFromFlexform('settings.eventRestriction');
+        $eventRestriction = (int)$renderer->getFieldFromFlexform('settings.eventRestriction', 'extraEntryEventNews');
         if ($eventRestriction > 0) {
-            $cmsLayout->tableData[] = [
-                $cmsLayout->getLanguageService()->sL('LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction'),
-                $cmsLayout->getLanguageService()->sL('LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.' . $eventRestriction)
+            $languageService = $this->getLanguageService();
+            $renderer->tableData[] = [
+                $languageService->sL('LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction'),
+                $languageService->sL('LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.' . $eventRestriction),
             ];
         }
+    }
+
+    protected function getLanguageService(): LanguageService
+    {
+        return $GLOBALS['LANG'];
     }
 }
