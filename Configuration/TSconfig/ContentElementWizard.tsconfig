@@ -1,0 +1,12 @@
+mod.wizards.newContentElement.wizardItems.ext-news {
+    elements {
+        news_month {
+            iconIdentifier = ext-news-type-event
+            title = LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:plugin.news_month.title
+            description = LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:plugin.news_month.description
+            tt_content_defValues {
+                CType = news_month
+            }
+        }
+    }
+}

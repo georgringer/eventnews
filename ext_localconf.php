@@ -1,12 +1,14 @@
 <?php
 
-// Add new controller/action
-$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems']['News->month']
-    = 'Month view';
-
-/***********
- * Hooks
- */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'Eventnews',
+    'NewsMonth',
+    [
+        \GeorgRinger\Eventnews\Controller\NewsController::class => 'month',
+    ],
+    [],
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+);
 
 // Hide not needed fields in FormEngine
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass']['eventnews']
@@ -37,7 +39,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
  */
 
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News'][] = 'eventnews';
-$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Controller/NewsController'][] = 'eventnews';
 
 \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class)->connect(
     \GeorgRinger\News\Domain\Service\NewsImportService::class,
@@ -45,6 +46,10 @@ $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Controller/NewsController
     \GeorgRinger\Eventnews\Aspect\NewsImportAspect::class,
     'postHydrate'
 );
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
+    @import \'EXT:eventnews/Configuration/TSconfig/ContentElementWizard.tsconfig\'
+    ');
 
 // override language files of news
 $overrideModuleLable = (bool)\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('eventnews', 'overrideAdministrationModuleLabel');
