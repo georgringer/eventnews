@@ -1,7 +1,5 @@
 <?php
 
-defined('TYPO3') or die();
-
 $pluginName = 'news_month';
 $pluginNameForLabel = $pluginName === 'pi1' ? 'news_list' : $pluginName;
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(

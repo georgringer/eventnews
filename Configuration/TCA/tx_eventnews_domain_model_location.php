@@ -1,7 +1,5 @@
 <?php
 
-defined('TYPO3_MODE') or die();
-
 $tx_eventnews_domain_model_location =  [
     'ctrl' => [
         'title' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_location',
