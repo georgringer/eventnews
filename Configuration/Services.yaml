@@ -7,3 +7,6 @@ services:
   GeorgRinger\Eventnews\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
+
+  GeorgRinger\Eventnews\Update\UpdatePluginFlexforms:
+    public: true
