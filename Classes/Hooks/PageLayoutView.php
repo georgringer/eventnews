@@ -20,7 +20,7 @@ class PageLayoutView
      */
     public function extensionSummary(array $params, PluginPreviewRenderer $pageLayout)
     {
-        if ($params['row']['CType'] === 'eventnews_newsmonth') {
+        if (($params['row']['CType'] ?? '')  === 'eventnews_newsmonth') {
             $pageLayout->getStartingPoint();
             $pageLayout->getTimeRestrictionSetting();
             $pageLayout->getTopNewsRestrictionSetting();
