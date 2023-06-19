@@ -81,7 +81,7 @@ class AbstractDemandedRepository
                 }
 
                 $dateConstraints = $this->getDateConstraint($query, $dateField, $begin, $end);
-                $constraints['datetime'] = $query->logicalOr($dateConstraints);
+                $constraints['datetime'] = $query->logicalOr(...$dateConstraints);
             }
 
             $organizers = $demand->getOrganizers();
@@ -107,7 +107,7 @@ class AbstractDemandedRepository
                 $convertedDateEnd = PHP_INT_MAX;
             }
             $dateConstraints = $this->getDateConstraint($query, 'datetime', $convertedDateStart, $convertedDateEnd);
-            $constraints['datetimeSearch'] = $query->logicalOr($dateConstraints);
+            $constraints['datetimeSearch'] = $query->logicalOr(...$dateConstraints);
 
             // Time restriction to include events with startdate in the past AND enddate in the future!
             if ($demand->getTimeRestriction()) {
@@ -161,8 +161,8 @@ class AbstractDemandedRepository
         ];
 
         $dateConstraints = [
-            $query->logicalAnd($eventsWithNoEndDate),
-            $query->logicalOr($eventsWithEndDate)
+            $query->logicalAnd(...$eventsWithNoEndDate),
+            $query->logicalOr(...$eventsWithEndDate)
         ];
         return $dateConstraints;
     }
