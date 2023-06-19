@@ -14,7 +14,7 @@ class FormViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper
     /**
      * register arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('action', 'string', 'Target action', false, null);
         $this->registerArgument('arguments', 'array', 'Arguments', false, []);
@@ -45,9 +45,8 @@ class FormViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper
      * @param string
      * @param string
      * @param string
-     * @return string rendered form
      */
-    public function render()
+    public function render(): string
     {
         $this->setFormActionUri();
         if (strtolower($this->arguments['method']) === 'get') {
