@@ -8,6 +8,7 @@ use GeorgRinger\Eventnews\Domain\Repository\LocationRepository;
 use GeorgRinger\Eventnews\Domain\Repository\OrganizerRepository;
 use GeorgRinger\Eventnews\Event\NewsMonthActionEvent;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -34,7 +35,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     public function monthAction(
         SearchDemand $search = null,
         array $overwriteDemand = null
-    )
+    ): ResponseInterface
     {
         $demand = $this->getDemand($search, $overwriteDemand);
         $newsRecordsWithDaySupport = $this->newsRepository->findDemanded($demand);
@@ -73,6 +74,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         $event = $this->eventDispatcher->dispatch(new NewsMonthActionEvent($this, $assignedValues));
         $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     protected function getDemand(
