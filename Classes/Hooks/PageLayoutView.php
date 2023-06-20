@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace GeorgRinger\Eventnews\Hooks;
 
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
+use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Localization\LanguageService;
 
 /**
@@ -20,7 +21,9 @@ class PageLayoutView
      */
     public function extensionSummary(array $params, PluginPreviewRenderer $pageLayout)
     {
-        if (($params['row']['CType'] ?? '')  === 'eventnews_newsmonth') {
+        /** @var GridColumnItem $item */
+        $item = $params['item'];
+        if ($item->getRecord()['CType']  === 'eventnews_newsmonth') {
             $pageLayout->getStartingPoint();
             $pageLayout->getTimeRestrictionSetting();
             $pageLayout->getTopNewsRestrictionSetting();
