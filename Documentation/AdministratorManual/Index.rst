@@ -31,8 +31,14 @@ If you are using the default templates of the news extension and haven't adopted
 Using your own templates
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you are using your own templates, just copy the template *EXT:eventnews/Resources/Private/Templates/Month.html* into the same directory
-where also the files like *List.html* or *Detail.html* are saved.
+Set the view directories for the content element:
+
+.. code-block:: typoscript
+
+    tt_content.eventnews_newsmonth.20.view {
+      templateRootPaths.10 = EXT:my_sitepackage/Resources/Private/Templates/Eventnews
+      partialRootPaths.10 = EXT:my_sitepackage/Resources/Private/Partials/Eventnews
+    }
 
 Configuration
 -------------
