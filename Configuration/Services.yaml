@@ -13,3 +13,9 @@ services:
       - name: event.listener
         identifier: 'eventnews-newsimportlistener'
         event: GeorgRinger\News\Event\NewsImportPostHydrateEvent
+
+  GeorgRinger\Eventnews\Hooks\FlexFormHook:
+    tags:
+      - name: event.listener
+        identifier: 'eventnews-flexformhook'
+        event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent

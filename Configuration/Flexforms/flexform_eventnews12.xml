@@ -1,0 +1,33 @@
+<extra>
+<ROOT>
+    <sheetTitle>Eventnews</sheetTitle>
+    <type>array</type>
+    <el>
+        <settings.eventRestriction>
+                <label>LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items>
+                        <numIndex index="label" type="array">
+                            <numIndex index="label">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.fallback</numIndex>
+                            <numIndex index="value"></numIndex>
+                        </numIndex>
+                        <numIndex index="value" type="array">
+                            <numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.no-constraint</numIndex>
+                            <numIndex index="value">3</numIndex>
+                        </numIndex>
+                        <numIndex index="2">
+                            <numIndex index="label">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.1</numIndex>
+                            <numIndex index="value">1</numIndex>
+                        </numIndex>
+                        <numIndex index="3">
+                            <numIndex index="label">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.2</numIndex>
+                            <numIndex index="value">2</numIndex>
+                        </numIndex>
+                    </items>
+                </config>
+        </settings.eventRestriction>
+    </el>
+</ROOT>
+</extra>
