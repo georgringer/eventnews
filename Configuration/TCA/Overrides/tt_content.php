@@ -40,5 +40,3 @@ $GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['showitem'] = '
             rowDescription,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
     ';
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
