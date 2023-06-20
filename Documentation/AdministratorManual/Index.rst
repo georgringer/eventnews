@@ -12,33 +12,17 @@ Installation
 
 After installing the extension you only need to take care to put the template of the additional view into the correct directory.
 
-If you use the default templates of EXT:news
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you are using the default templates of the news extension and haven't adopted those at all, all you need to do is using this TypoScript:
-
 .. code-block:: typoscript
 
-    plugin.tx_news {
+    plugin.tx_eventnews {
       view {
         templateRootPaths {
-            0 = {$plugin.tx_news.view.templateRootPath}
-            1 = EXT:eventnews/Resources/Private/Templates/
+            10 = EXT:your-site-package/Resources/Private/Extensions/Eventnews/Templates/
         }
       }
     }
 
-Using your own templates
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Set the view directories for the content element:
-
-.. code-block:: typoscript
-
-    tt_content.eventnews_newsmonth.20.view {
-      templateRootPaths.10 = EXT:my_sitepackage/Resources/Private/Templates/Eventnews
-      partialRootPaths.10 = EXT:my_sitepackage/Resources/Private/Partials/Eventnews
-    }
+And having the copy of the file `EXT:eventnews/Resources/Private/Templates/News/Month.html` at `EXT:your-site-package/Resources/Private/Extensions/Eventnews/Templates/News/Month.html`.
 
 Configuration
 -------------
