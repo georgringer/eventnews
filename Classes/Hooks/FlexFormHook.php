@@ -24,7 +24,7 @@ class FlexFormHook
         $dataStructure = $event->getDataStructure();
         $identifier = $event->getIdentifier();
 
-        if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === '*,eventnews_newsmonth') {
+        if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $this->isActiveOnKey($identifier['dataStructureKey'])) {
             $content = file_get_contents($this->getPath());
             if ($content) {
                 $dataStructure['sheets']['extraEntryEventNews'] = GeneralUtility::xml2array($content);
@@ -35,13 +35,26 @@ class FlexFormHook
 
     public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
     {
-        if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === '*,eventnews_newsmonth') {
+        if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $this->isActiveOnKey($identifier['dataStructureKey'])) {
             $content = file_get_contents($this->getPath());
             if ($content) {
                 $dataStructure['sheets']['extraEntryEventNews'] = GeneralUtility::xml2array($content);
             }
         }
         return $dataStructure;
+    }
+
+    protected function isActiveOnKey(string $dataStructureKey): bool
+    {
+        $validKeys = ['*,eventnews_', '*,news_'];
+        $active = false;
+        foreach($validKeys as $prefix) {
+            if (substr($dataStructureKey, 0, strlen($prefix)) === $prefix) {
+                $active = true;
+                break;
+            }
+        }
+        return $active;
     }
 
     protected function getPath(): string
