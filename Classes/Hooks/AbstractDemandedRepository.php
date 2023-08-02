@@ -24,7 +24,13 @@ class AbstractDemandedRepository
      */
     public function modify(array $params)
     {
-        if (get_class($params['demand']) !== Demand::class || $params['query']->getType() !== News::class) {
+        if (get_class($params['demand']) !== Demand::class) {
+            return;
+        }
+
+        $queryType = $params['query']->getType();
+
+        if ($queryType !== News::class && !is_subclass_of($queryType, News::class)) {
             return;
         }
 
