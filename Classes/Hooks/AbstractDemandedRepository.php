@@ -24,7 +24,7 @@ class AbstractDemandedRepository
      */
     public function modify(array $params)
     {
-        if (get_class($params['demand']) !== Demand::class) {
+        if (!($params['demand'] instanceof Demand)) {
             return;
         }
 
