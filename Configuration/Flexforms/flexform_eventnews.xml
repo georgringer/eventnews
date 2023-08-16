@@ -6,31 +6,29 @@
     <type>array</type>
     <el>
         <settings.eventRestriction>
-            <TCEforms>
-                <label>LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction</label>
-                <config>
-                    <type>select</type>
-                    <renderType>selectSingle</renderType>
-                    <items>
-                        <numIndex index="0" type="array">
-                            <numIndex index="0">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.fallback</numIndex>
-                            <numIndex index="1"></numIndex>
-                        </numIndex>
-                        <numIndex index="1" type="array">
-                            <numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.no-constraint</numIndex>
-                            <numIndex index="1">3</numIndex>
-                        </numIndex>
-                        <numIndex index="2">
-                            <numIndex index="0">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.1</numIndex>
-                            <numIndex index="1">1</numIndex>
-                        </numIndex>
-                        <numIndex index="3">
-                            <numIndex index="0">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.2</numIndex>
-                            <numIndex index="1">2</numIndex>
-                        </numIndex>
-                    </items>
-                </config>
-            </TCEforms>
+            <label>LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction</label>
+            <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items>
+                    <numIndex index="0" type="array">
+                        <numIndex index="0">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.fallback</numIndex>
+                        <numIndex index="1"></numIndex>
+                    </numIndex>
+                    <numIndex index="1" type="array">
+                        <numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.no-constraint</numIndex>
+                        <numIndex index="1">3</numIndex>
+                    </numIndex>
+                    <numIndex index="2">
+                        <numIndex index="0">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.1</numIndex>
+                        <numIndex index="1">1</numIndex>
+                    </numIndex>
+                    <numIndex index="3">
+                        <numIndex index="0">LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.2</numIndex>
+                        <numIndex index="1">2</numIndex>
+                    </numIndex>
+                </items>
+            </config>
         </settings.eventRestriction>
     </el>
 </ROOT>
