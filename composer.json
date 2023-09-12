@@ -9,6 +9,11 @@
         "news"
     ],
     "homepage": "https://ringer.it",
+	"support": {
+		"source": "https://github.com/georgringer/eventnews",
+		"issues": "https://github.com/georgringer/eventnews/issues",
+		"docs": "https://docs.typo3.org/p/georgringer/eventnews/main/en-us/"
+	},
     "authors": [
         {
             "name": "Georg Ringer",
