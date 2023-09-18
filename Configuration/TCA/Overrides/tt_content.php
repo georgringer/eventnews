@@ -5,7 +5,7 @@ $pluginNameForLabel = $pluginName === 'pi1' ? 'news_list' : $pluginName;
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'eventnews',
     'NewsMonth',
-    'LLL:EXT:eventnews/Resources/Private/Language/locallang_be.xlf:plugin.news_month.title',
+    'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:plugin.news_month.title',
     null,
     'news'
 );
