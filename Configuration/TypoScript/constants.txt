@@ -1,0 +1,2 @@
+# Important: This file is deprecated and will removed with EXT:eventnews 7.x
+@import 'EXT:eventnews/Configuration/TypoScript/constants.typoscript'
