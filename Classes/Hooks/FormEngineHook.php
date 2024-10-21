@@ -14,19 +14,20 @@ namespace GeorgRinger\Eventnews\Hooks;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class FormEngineHook
+ * Class FormEngineHook.
  */
 class FormEngineHook
 {
     protected const FIELDS = 'full_day,event_end,organizer,organizer_simple,location,location_simple';
 
     /**
-     * Remove rendered field from output if it is no event
+     * Remove rendered field from output if it is no event.
      *
      * @param string $table
      * @param string $field
-     * @param array $row
+     * @param array  $row
      * @param string $out
+     *
      * @return void
      */
     public function getSingleField_postProcess($table, $field, $row, &$out)

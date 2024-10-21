@@ -9,7 +9,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class EventNewsRowInitializeNewTest extends BaseTestCase
 {
-
     /**
      * @test
      */
@@ -18,17 +17,16 @@ class EventNewsRowInitializeNewTest extends BaseTestCase
         $instance = new EventNewsRowInitializeNew();
 
         $result = [
-            'command' => 'new',
-            'tableName' => 'tx_news_domain_model_news',
+            'command'      => 'new',
+            'tableName'    => 'tx_news_domain_model_news',
             'pageTsConfig' => [
                 'tx_news.' => [
-                    'newRecordAsEvent' => 1
-                ]
-            ]
+                    'newRecordAsEvent' => 1,
+                ],
+            ],
         ];
 
         $result = $instance->addData($result);
         $this->assertEquals(1, $result['databaseRow']['is_event']);
     }
-
 }

@@ -19,7 +19,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 class AbstractRepository extends Repository
 {
     /**
-     * Set default sorting
+     * Set default sorting.
      *
      * @var array
      */
@@ -39,6 +39,7 @@ class AbstractRepository extends Repository
 
     /**
      * @param $pidList
+     *
      * @return QueryResultInterface
      */
     public function findByStartingPoint($pidList)
@@ -50,7 +51,8 @@ class AbstractRepository extends Repository
             return $query->matching(
                 $query->logicalAnd(
                     $query->in('pid', $pidList)
-                ))->execute();
+                )
+            )->execute();
         }
 
         return $query->execute();

@@ -7,14 +7,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class CalendarViewHelper extends AbstractViewHelper
 {
-
     /**
      * @var bool
      */
     protected $escapeOutput = false;
 
     /**
-     * register arguments
+     * register arguments.
      */
     public function initializeArguments()
     {
@@ -34,10 +33,10 @@ class CalendarViewHelper extends AbstractViewHelper
         $year = $demand->getYear();
 
         $firstDayOfMonth = mktime(0, 0, 0, $month, 1, $year);
-        $dayOfWeekOfFirstDay = (int)date('w', $firstDayOfMonth);
+        $dayOfWeekOfFirstDay = (int) date('w', $firstDayOfMonth);
 
         $firstDayOfCalendar = 1 - $dayOfWeekOfFirstDay + $this->arguments['firstDayOfWeek'];
-        $ld = (int)date('t', $firstDayOfMonth);
+        $ld = (int) date('t', $firstDayOfMonth);
         if ($firstDayOfCalendar > 1) {
             $firstDayOfCalendar -= 7;
         }
@@ -51,7 +50,7 @@ class CalendarViewHelper extends AbstractViewHelper
             for ($d = 0; $d < 7; $d++) {
                 $day = [];
                 $dts = mktime(0, 0, 0, $month, $firstDayOfCalendar, $year);
-                $currentDay = (int)date('j', $dts);
+                $currentDay = (int) date('j', $dts);
 
                 if ($inCurrentMonthBefore && $currentDay === 1) {
                     $inCurrentMonthAfter = true;
@@ -63,9 +62,9 @@ class CalendarViewHelper extends AbstractViewHelper
 
                 $day['dayBelongsToCurrentMonth'] = $inCurrentMonthBefore;
                 $day['ts'] = $dts;
-                $day['day'] = (string)date('j', $dts); // todo: change back to int cast when https://review.typo3.org/c/Packages/TYPO3.CMS/+/86664 is fixed
-                $day['month'] = (int)date('n', $dts);
-                $day['year'] = (int)date('Y', $dts);
+                $day['day'] = (string) date('j', $dts); // todo: change back to int cast when https://review.typo3.org/c/Packages/TYPO3.CMS/+/86664 is fixed
+                $day['month'] = (int) date('n', $dts);
+                $day['year'] = (int) date('Y', $dts);
                 $day['curmonth'] = $day['month'] == $month;
                 $day['curday'] = date('Ymd') == date('Ymd', $day['ts']);
 
@@ -87,8 +86,9 @@ class CalendarViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param object $newsList
+     * @param object    $newsList
      * @param \DateTime $currentDay
+     *
      * @return array
      */
     protected function getNewsForDay($newsList, $currentDay)

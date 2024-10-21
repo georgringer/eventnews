@@ -18,7 +18,7 @@ $contentTypeName = 'eventnews_newsmonth';
     'FILE:EXT:news/Configuration/FlexForms/flexform_news_list.xml',
     'eventnews_newsmonth'
 );
-$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentTypeName] = 'ext-news-plugin-' . str_replace('_', '-', $pluginNameForLabel);
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentTypeName] = 'ext-news-plugin-'.str_replace('_', '-', $pluginNameForLabel);
 
 $GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['previewRenderer'] = \GeorgRinger\News\Hooks\PluginPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['showitem'] = '

@@ -14,7 +14,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class OrganizerViewHelper extends AbstractViewHelper
 {
-
     /**
      * @var bool
      */
@@ -50,6 +49,7 @@ class OrganizerViewHelper extends AbstractViewHelper
         $this->templateVariableContainer->add($as, $filteredOrganizers);
         $output = $this->renderChildren();
         $this->templateVariableContainer->remove($as);
+
         return $output;
     }
 }

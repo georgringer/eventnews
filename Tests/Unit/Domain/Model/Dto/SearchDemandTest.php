@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class SearchDemandTest extends BaseTestCase
 {
-
     /** @var SearchDemand */
     protected $subject = null;
 
@@ -23,7 +22,7 @@ class SearchDemandTest extends BaseTestCase
     {
         $value = [
             3 => 3,
-            4 => 4
+            4 => 4,
         ];
         $this->subject->setOrganizers($value);
 
