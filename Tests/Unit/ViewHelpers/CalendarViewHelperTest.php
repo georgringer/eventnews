@@ -8,11 +8,12 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class CalendarViewHelperTest extends BaseTestCase
 {
-
     /**
      * @test
+     *
      * @dataProvider newsOfADayProvider
-     * @param int $day
+     *
+     * @param int    $day
      * @param string $list
      */
     public function getCorrectNewsOfADay($day, $list): void

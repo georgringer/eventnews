@@ -2,22 +2,22 @@
 
 $tx_eventnews_domain_model_organizer = [
     'ctrl' => [
-        'title' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_organizer',
-        'label' => 'title',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'versioningWS' => true,
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
+        'title'                    => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_organizer',
+        'label'                    => 'title',
+        'tstamp'                   => 'tstamp',
+        'crdate'                   => 'crdate',
+        'versioningWS'             => true,
+        'languageField'            => 'sys_language_uid',
+        'transOrigPointerField'    => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
-        'delete' => 'deleted',
-        'enablecolumns' => [
-            'disabled' => 'hidden',
+        'delete'                   => 'deleted',
+        'enablecolumns'            => [
+            'disabled'  => 'hidden',
             'starttime' => 'starttime',
-            'endtime' => 'endtime',
+            'endtime'   => 'endtime',
         ],
         'searchFields' => 'title,description,',
-        'iconfile' => 'EXT:eventnews/Resources/Public/Icons/tx_eventnews_domain_model_organizer.svg',
+        'iconfile'     => 'EXT:eventnews/Resources/Public/Icons/tx_eventnews_domain_model_organizer.svg',
     ],
     'types' => [
         '1' => ['showitem' => '
@@ -30,26 +30,26 @@ $tx_eventnews_domain_model_organizer = [
     ],
     'palettes' => [
         'timeRestriction' => ['showitem' => 'starttime, endtime'],
-        'language' => ['showitem' => 'sys_language_uid, l10n_parent'],
+        'language'        => ['showitem' => 'sys_language_uid, l10n_parent'],
     ],
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-            'config' => [
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
+            'config'  => [
                 'type' => 'language',
             ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
-            'config' => [
-                'type' => 'select',
+            'label'       => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+            'config'      => [
+                'type'       => 'select',
                 'renderType' => 'selectSingle',
-                'items' => [
+                'items'      => [
                     ['label' => '', 'value' => 0],
                 ],
-                'foreign_table' => 'tx_eventnews_domain_model_organizer',
+                'foreign_table'       => 'tx_eventnews_domain_model_organizer',
                 'foreign_table_where' => 'AND tx_eventnews_domain_model_organizer.pid=###CURRENT_PID### AND tx_eventnews_domain_model_organizer.sys_language_uid IN (-1,0)',
             ],
         ],
@@ -59,43 +59,43 @@ $tx_eventnews_domain_model_organizer = [
             ],
         ],
         't3ver_label' => [
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
+            'label'  => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'max' => 255,
+                'max'  => 255,
             ],
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
-            'config' => [
-                'type' => 'check',
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
+            'config'  => [
+                'type'       => 'check',
                 'renderType' => 'checkboxToggle',
-                'default' => 0,
-                'items' => [
+                'default'    => 0,
+                'items'      => [
                     ['label' => '', 'value' => ''],
                 ],
             ],
         ],
         'starttime' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
-            'config' => [
+            'label'   => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
+            'config'  => [
                 'type' => 'datetime',
             ],
         ],
         'endtime' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
-            'config' => [
+            'label'   => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
+            'config'  => [
                 'type' => 'datetime',
             ],
         ],
         'title' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_organizer.title',
-            'config' => [
+            'label'   => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_organizer.title',
+            'config'  => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim',
@@ -103,8 +103,8 @@ $tx_eventnews_domain_model_organizer = [
         ],
         'description' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_organizer.description',
-            'config' => [
+            'label'   => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_organizer.description',
+            'config'  => [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 4,
@@ -113,10 +113,10 @@ $tx_eventnews_domain_model_organizer = [
         ],
         'link' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_organizer.link',
-            'config' => [
-                'type' => 'link',
-                'softref' => 'typolink',
+            'label'   => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_organizer.link',
+            'config'  => [
+                'type'      => 'link',
+                'softref'   => 'typolink',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],

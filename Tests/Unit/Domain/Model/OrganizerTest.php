@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class OrganizerTest extends BaseTestCase
 {
-
     /** @var Organizer */
     protected $subject = null;
 

@@ -12,48 +12,47 @@ namespace GeorgRinger\Eventnews\Domain\Model;
  */
 
 /**
- * Location
+ * Location.
  */
 class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     /**
-     * title
+     * title.
      *
      * @var string
      */
     protected $title = '';
 
     /**
-     * description
+     * description.
      *
      * @var string
      */
     protected $description = '';
 
     /**
-     * lat
+     * lat.
      *
      * @var float
      */
     protected $lat = 0.0;
 
     /**
-     * lng
+     * lng.
      *
      * @var float
      */
     protected $lng = 0.0;
 
     /**
-     * link
+     * link.
      *
      * @var string
      */
     protected $link = '';
 
     /**
-     * Returns the title
+     * Returns the title.
      *
      * @return string $title
      */
@@ -63,9 +62,10 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the title
+     * Sets the title.
      *
      * @param string $title
+     *
      * @return void
      */
     public function setTitle($title)
@@ -74,7 +74,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the description
+     * Returns the description.
      *
      * @return string $description
      */
@@ -84,9 +84,10 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the description
+     * Sets the description.
      *
      * @param string $description
+     *
      * @return void
      */
     public function setDescription($description)
@@ -95,7 +96,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the lat
+     * Returns the lat.
      *
      * @return float $lat
      */
@@ -105,9 +106,10 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the lat
+     * Sets the lat.
      *
      * @param float $lat
+     *
      * @return void
      */
     public function setLat($lat)
@@ -116,7 +118,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the lng
+     * Returns the lng.
      *
      * @return float $lng
      */
@@ -126,9 +128,10 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the lng
+     * Sets the lng.
      *
      * @param float $lng
+     *
      * @return void
      */
     public function setLng($lng)
@@ -137,7 +140,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the link
+     * Returns the link.
      *
      * @return string $link
      */
@@ -147,9 +150,10 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the link
+     * Sets the link.
      *
      * @param string $link
+     *
      * @return void
      */
     public function setLink($link)

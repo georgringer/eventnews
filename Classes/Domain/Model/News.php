@@ -10,41 +10,40 @@ namespace GeorgRinger\Eventnews\Domain\Model;
  */
 
 /**
- * News
+ * News.
  */
 class News extends \GeorgRinger\News\Domain\Model\News
 {
-
     /**
-     * isEvent
+     * isEvent.
      *
      * @var bool
      */
     protected $isEvent = false;
 
     /**
-     * fullDay
+     * fullDay.
      *
      * @var bool
      */
     protected $fullDay = false;
 
     /**
-     * eventEnd
+     * eventEnd.
      *
      * @var \DateTime
      */
     protected $eventEnd = null;
 
     /**
-     * organizer
+     * organizer.
      *
      * @var \GeorgRinger\Eventnews\Domain\Model\Organizer
      */
     protected $organizer = null;
 
     /**
-     * location
+     * location.
      *
      * @var \GeorgRinger\Eventnews\Domain\Model\Location
      */
@@ -61,7 +60,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     protected $locationSimple;
 
     /**
-     * Returns the isEvent
+     * Returns the isEvent.
      *
      * @return bool $isEvent
      */
@@ -71,9 +70,10 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Sets the isEvent
+     * Sets the isEvent.
      *
      * @param bool $isEvent
+     *
      * @return void
      */
     public function setIsEvent($isEvent)
@@ -82,7 +82,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Returns the boolean state of isEvent
+     * Returns the boolean state of isEvent.
      *
      * @return bool
      */
@@ -92,7 +92,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Returns the fullDay
+     * Returns the fullDay.
      *
      * @return bool $fullDay
      */
@@ -102,9 +102,10 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Sets the fullDay
+     * Sets the fullDay.
      *
      * @param bool $fullDay
+     *
      * @return void
      */
     public function setFullDay($fullDay)
@@ -113,7 +114,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Returns the boolean state of fullDay
+     * Returns the boolean state of fullDay.
      *
      * @return bool
      */
@@ -123,7 +124,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Returns the eventEnd
+     * Returns the eventEnd.
      *
      * @return \DateTime $eventEnd
      */
@@ -133,9 +134,10 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Sets the eventEnd
+     * Sets the eventEnd.
      *
      * @param \DateTime $eventEnd
+     *
      * @return void
      */
     public function setEventEnd(\DateTime $eventEnd)
@@ -144,7 +146,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Returns the organizer
+     * Returns the organizer.
      *
      * @return \GeorgRinger\Eventnews\Domain\Model\Organizer $organizer
      */
@@ -154,9 +156,10 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Sets the organizer
+     * Sets the organizer.
      *
      * @param \GeorgRinger\Eventnews\Domain\Model\Organizer $organizer
+     *
      * @return void
      */
     public function setOrganizer(\GeorgRinger\Eventnews\Domain\Model\Organizer $organizer)
@@ -165,7 +168,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Returns the location
+     * Returns the location.
      *
      * @return \GeorgRinger\Eventnews\Domain\Model\Location $location
      */
@@ -175,9 +178,10 @@ class News extends \GeorgRinger\News\Domain\Model\News
     }
 
     /**
-     * Sets the location
+     * Sets the location.
      *
      * @param \GeorgRinger\Eventnews\Domain\Model\Location $location
+     *
      * @return void
      */
     public function setLocation(\GeorgRinger\Eventnews\Domain\Model\Location $location)

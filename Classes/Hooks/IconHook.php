@@ -10,13 +10,13 @@ namespace GeorgRinger\Eventnews\Hooks;
  */
 
 /**
- * Change news icon if it is an event
+ * Change news icon if it is an event.
  */
 class IconHook
 {
-
     /**
      * @param array $params
+     *
      * @return string|null
      */
     public function run(array $params)

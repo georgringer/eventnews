@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\Eventnews\Hooks;
@@ -15,15 +16,14 @@ use TYPO3\CMS\Core\Localization\LanguageService;
  */
 class PageLayoutView
 {
-
     /**
-     * Provide an extension summary for the month selection
+     * Provide an extension summary for the month selection.
      */
     public function extensionSummary(array $params, PluginPreviewRenderer $pageLayout)
     {
         /** @var GridColumnItem $item */
         $item = $params['item'];
-        if ($item->getRecord()['CType']  === 'eventnews_newsmonth') {
+        if ($item->getRecord()['CType'] === 'eventnews_newsmonth') {
             $pageLayout->getStartingPoint();
             $pageLayout->getTimeRestrictionSetting();
             $pageLayout->getTopNewsRestrictionSetting();
@@ -39,16 +39,16 @@ class PageLayoutView
     }
 
     /**
-     * Show the event restriction
+     * Show the event restriction.
      */
     protected function getEventRestrictionSetting(PluginPreviewRenderer $renderer)
     {
-        $eventRestriction = (int)$renderer->getFieldFromFlexform('settings.eventRestriction', 'extraEntryEventNews');
+        $eventRestriction = (int) $renderer->getFieldFromFlexform('settings.eventRestriction', 'extraEntryEventNews');
         if ($eventRestriction > 0) {
             $languageService = $this->getLanguageService();
             $renderer->tableData[] = [
                 $languageService->sL('LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction'),
-                $languageService->sL('LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.' . $eventRestriction),
+                $languageService->sL('LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.'.$eventRestriction),
             ];
         }
     }
