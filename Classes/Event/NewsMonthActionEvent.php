@@ -29,7 +29,7 @@ final class NewsMonthActionEvent
     }
 
     /**
-     * Get the news controller
+     * Get the news controller.
      */
     public function getNewsController(): NewsController
     {
@@ -37,7 +37,7 @@ final class NewsMonthActionEvent
     }
 
     /**
-     * Set the news controller
+     * Set the news controller.
      */
     public function setNewsController(NewsController $newsController): self
     {
@@ -47,7 +47,7 @@ final class NewsMonthActionEvent
     }
 
     /**
-     * Get the assignedValues
+     * Get the assignedValues.
      */
     public function getAssignedValues(): array
     {
@@ -55,7 +55,7 @@ final class NewsMonthActionEvent
     }
 
     /**
-     * Set the assignedValues
+     * Set the assignedValues.
      */
     public function setAssignedValues(array $assignedValues): self
     {

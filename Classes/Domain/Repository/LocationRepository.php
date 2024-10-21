@@ -10,7 +10,7 @@ namespace GeorgRinger\Eventnews\Domain\Repository;
  */
 
 /**
- * Class LocationRepository
+ * Class LocationRepository.
  */
 class LocationRepository extends AbstractRepository
 {

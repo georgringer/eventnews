@@ -12,7 +12,6 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 class Demand extends NewsDemand
 {
     const EVENT_RESTRICTION_ONLY_EVENTS = 1;
@@ -80,7 +79,7 @@ class Demand extends NewsDemand
      */
     public function getEventRestriction()
     {
-        return (int)$this->eventRestriction;
+        return (int) $this->eventRestriction;
     }
 
     /**
@@ -124,9 +123,10 @@ class Demand extends NewsDemand
     }
 
     /**
-     * Remove empty value entries
+     * Remove empty value entries.
      *
      * @param $array
+     *
      * @return array
      */
     public function getNonEmptyArrayValues($array)
@@ -139,6 +139,7 @@ class Demand extends NewsDemand
                 }
             }
         }
+
         return $out;
     }
 

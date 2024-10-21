@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LocationTest extends BaseTestCase
 {
-
     /**
      * @var Location
      */

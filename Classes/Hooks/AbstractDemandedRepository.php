@@ -15,11 +15,11 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 class AbstractDemandedRepository
 {
-
     /**
-     * Modify the constraints used in the query
+     * Modify the constraints used in the query.
      *
      * @param array $params
+     *
      * @return void
      */
     public function modify(array $params)
@@ -43,12 +43,13 @@ class AbstractDemandedRepository
     }
 
     /**
-     * Update the main event constraints
+     * Update the main event constraints.
      *
-     * @param Demand $demand
-     * @param bool $respectEnableFields
+     * @param Demand                                        $demand
+     * @param bool                                          $respectEnableFields
      * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-     * @param array $constraints
+     * @param array                                         $constraints
+     *
      * @return void
      */
     protected function updateEventConstraints(
@@ -79,7 +80,7 @@ class AbstractDemandedRepository
                         $end = mktime(23, 59, 59, $demand->getMonth(), $demand->getDay(), $demand->getYear());
                     } else {
                         $begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
-                        $end = mktime(23, 59, 59, ($demand->getMonth() + 1), 0, $demand->getYear());
+                        $end = mktime(23, 59, 59, $demand->getMonth() + 1, 0, $demand->getYear());
                     }
                 } else {
                     $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
@@ -128,9 +129,10 @@ class AbstractDemandedRepository
 
     /**
      * @param QueryInterface $query
-     * @param string $dateField
-     * @param int $begin
-     * @param int $end
+     * @param string         $dateField
+     * @param int            $begin
+     * @param int            $end
+     *
      * @return array
      */
     protected function getDateConstraint(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, $dateField, $begin, $end)
@@ -139,7 +141,7 @@ class AbstractDemandedRepository
             $query->logicalAnd(
                 $query->greaterThanOrEqual($dateField, $begin),
                 $query->lessThanOrEqual($dateField, $end)
-            )
+            ),
         ];
 
         $eventsWithEndDate = [
@@ -163,13 +165,14 @@ class AbstractDemandedRepository
             $query->logicalAnd(
                 $query->lessThanOrEqual($dateField, $end),
                 $query->greaterThanOrEqual('eventEnd', $end)
-            )
+            ),
         ];
 
         $dateConstraints = [
             $query->logicalAnd(...$eventsWithNoEndDate),
-            $query->logicalOr(...$eventsWithEndDate)
+            $query->logicalOr(...$eventsWithEndDate),
         ];
+
         return $dateConstraints;
     }
 }

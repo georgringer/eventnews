@@ -22,14 +22,14 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  *           <events:redirect url="{n:link(newsItem:newsItem,settings:settings,uriOnly:1,configuration:{forceAbsoluteUrl:1})}" />
  *       </f:for>
  *   </f:if>
- *  </f:if>
+ *  </f:if>.
  */
 class RedirectViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
     /**
-     * Initialize arguments
+     * Initialize arguments.
      */
     public function initializeArguments()
     {
@@ -37,17 +37,17 @@ class RedirectViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
+     * @param array                     $arguments
+     * @param \Closure                  $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
+     *
      * @return void
      */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         if ($arguments['url']) {
             HttpUtility::redirect($arguments['url']);
         }
