@@ -15,7 +15,7 @@ class BackendUtility extends \GeorgRinger\News\Hooks\BackendUtility
 {
     /**
      * @param array|string $params
-     * @param array $reference
+     * @param array        $reference
      */
     public function update(&$params, &$reference)
     {

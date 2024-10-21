@@ -12,34 +12,33 @@ namespace GeorgRinger\Eventnews\Domain\Model;
  */
 
 /**
- * Organizer
+ * Organizer.
  */
 class Organizer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     /**
-     * title
+     * title.
      *
      * @var string
      */
     protected $title = '';
 
     /**
-     * description
+     * description.
      *
      * @var string
      */
     protected $description = '';
 
     /**
-     * link
+     * link.
      *
      * @var string
      */
     protected $link = '';
 
     /**
-     * Returns the title
+     * Returns the title.
      *
      * @return string $title
      */
@@ -49,9 +48,10 @@ class Organizer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the title
+     * Sets the title.
      *
      * @param string $title
+     *
      * @return void
      */
     public function setTitle($title)
@@ -60,7 +60,7 @@ class Organizer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the description
+     * Returns the description.
      *
      * @return string $description
      */
@@ -70,9 +70,10 @@ class Organizer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Sets the description
+     * Sets the description.
      *
      * @param string $description
+     *
      * @return void
      */
     public function setDescription($description)

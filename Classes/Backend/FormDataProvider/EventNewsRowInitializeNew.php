@@ -14,13 +14,13 @@ namespace GeorgRinger\Eventnews\Backend\FormDataProvider;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 
 /**
- * Fill the news records with default values
+ * Fill the news records with default values.
  */
 class EventNewsRowInitializeNew implements FormDataProviderInterface
 {
-
     /**
      * @param array $result
+     *
      * @return array
      */
     public function addData(array $result): array

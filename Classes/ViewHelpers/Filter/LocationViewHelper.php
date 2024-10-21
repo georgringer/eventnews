@@ -14,7 +14,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class LocationViewHelper extends AbstractViewHelper
 {
-
     /**
      * @var bool
      */
@@ -51,6 +50,7 @@ class LocationViewHelper extends AbstractViewHelper
         $this->templateVariableContainer->add($as, $filteredLocations);
         $output = $this->renderChildren();
         $this->templateVariableContainer->remove($as);
+
         return $output;
     }
 }

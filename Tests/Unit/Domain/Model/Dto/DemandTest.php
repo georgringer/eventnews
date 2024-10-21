@@ -7,7 +7,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class DemandTest extends BaseTestCase
 {
-
     /** @var Demand */
     protected $subject = null;
 
@@ -19,11 +18,11 @@ class DemandTest extends BaseTestCase
     /**
      * @test
      */
-    public function setOrganizer():void
+    public function setOrganizer(): void
     {
         $value = [
             3 => 3,
-            4 => 4
+            4 => 4,
         ];
         $this->subject->setOrganizers($value);
 
@@ -33,12 +32,12 @@ class DemandTest extends BaseTestCase
     /**
      * @test
      */
-    public function setLocation():void
+    public function setLocation(): void
     {
         $value = [
             4 => 4,
             5 => 5,
-            6 => null
+            6 => null,
         ];
         $valueCleaned = [
             4 => 4,

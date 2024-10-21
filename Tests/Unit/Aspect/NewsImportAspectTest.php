@@ -10,7 +10,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class NewsImportAspectTest extends BaseTestCase
 {
-
     /**
      * @test
      */
@@ -22,9 +21,9 @@ class NewsImportAspectTest extends BaseTestCase
         $date = new \DateTime('@1581100369');
         $importData = [
             '_dynamicData' => [
-                'location' => 'Example Location',
-                'datetime_end' => 1581100369
-            ]
+                'location'     => 'Example Location',
+                'datetime_end' => 1581100369,
+            ],
         ];
 
         $instance = new NewsImportAspect();
@@ -33,6 +32,4 @@ class NewsImportAspectTest extends BaseTestCase
         $this->assertEquals($date, $news->getEventEnd());
         $this->assertEquals('Example Location', $news->getLocationSimple());
     }
-
-
 }

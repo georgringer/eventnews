@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AfterFlexFormDataStructureParsedEventListener
 {
-
     public function __invoke(AfterFlexFormDataStructureParsedEvent $event): void
     {
         $dataStructure = $event->getDataStructure();
@@ -37,18 +36,20 @@ class AfterFlexFormDataStructureParsedEventListener
     {
         $validKeys = ['*,eventnews_', '*,news_'];
         $active = false;
-        foreach($validKeys as $prefix) {
+        foreach ($validKeys as $prefix) {
             if (substr($dataStructureKey, 0, strlen($prefix)) === $prefix) {
                 $active = true;
                 break;
             }
         }
+
         return $active;
     }
 
     private function getPath(): string
     {
         $file = (new Typo3Version())->getMajorVersion() >= 12 ? 'flexform_eventnews12.xml' : 'flexform_eventnews.xml';
-        return ExtensionManagementUtility::extPath('eventnews') . 'Configuration/Flexforms/' . $file;
+
+        return ExtensionManagementUtility::extPath('eventnews').'Configuration/Flexforms/'.$file;
     }
 }
