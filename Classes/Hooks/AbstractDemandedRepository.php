@@ -90,6 +90,56 @@ class AbstractDemandedRepository
                 $constraints['datetime'] = $query->logicalOr(...$dateConstraints);
             }
 
+            $archiveRestriction = $demand->getArchiveRestriction();
+            if (!empty($archiveRestriction)) {
+                $timestamp  = time();
+                $beginningOfDay = strtotime("midnight", $timestamp);
+                $endOfDay = strtotime("tomorrow", $beginningOfDay) - 1;
+                $activeConstraint = $query->logicalOr(
+                // future events
+                    $query->greaterThan('datetime', $timestamp),
+
+                    // current non-full day events
+                    $query->logicalAnd(
+                        $query->equals('full_day', 0),
+                        $query->lessThan('datetime', $timestamp),
+                        $query->greaterThan('event_end', $timestamp)
+                    ),
+
+                    // current full day ending today
+                    $query->logicalAnd(
+                        $query->equals('full_day', 1),
+                        $query->lessThan('datetime', $beginningOfDay),
+                        $query->greaterThan('event_end', $beginningOfDay),
+                        $query->lessThan('event_end', $endOfDay)
+                    ),
+
+                    // current full day ending in future
+                    $query->logicalAnd(
+                        $query->equals('full_day', 1),
+                        $query->lessThan('datetime', $timestamp),
+                        $query->greaterThan('event_end', $endOfDay)
+                    ),
+
+                    // today's full day events without end time
+                    $query->logicalAnd(
+                        $query->equals('full_day', 1),
+                        $query->greaterThanOrEqual('datetime', $beginningOfDay),
+                        $query->equals('event_end', 0)
+                    )
+                );
+
+                // reset existing archived constraint
+                unset($constraints['archived']);
+
+                if ($demand->getArchiveRestriction() == 'archived') {
+                    $constraints['archived'] = $query->logicalNot($activeConstraint);
+                } elseif ($demand->getArchiveRestriction() == 'active') {
+                    $constraints['archived'] = $activeConstraint;
+                }
+            }
+
+
             $organizers = $demand->getOrganizers();
             if (!empty($organizers)) {
                 $constraints[] = $query->in('organizer', $organizers);
