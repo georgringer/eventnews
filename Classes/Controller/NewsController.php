@@ -82,8 +82,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     }
 
     protected function getDemand(
-        SearchDemand $search = null,
-        array $overwriteDemand = null
+        ?SearchDemand $search = null,
+        ?array $overwriteDemand = null
     ): Demand
     {
         /** @var Demand $demand */
