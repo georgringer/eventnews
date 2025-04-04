@@ -34,8 +34,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("search")
      */
     public function monthAction(
-        SearchDemand $search = null,
-        array $overwriteDemand = null
+        ?SearchDemand $search = null,
+        ?array $overwriteDemand = null
     ): ResponseInterface
     {
         $demand = $this->getDemand($search, $overwriteDemand);
