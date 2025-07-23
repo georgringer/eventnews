@@ -8,5 +8,13 @@ mod.wizards.newContentElement.wizardItems.ext-news {
                 CType = eventnews_newsmonth
             }
         }
+        news_month_detail {
+            iconIdentifier = ext-news-type-event
+            title = LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:plugin.news_month_detail.title
+            description = LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:plugin.news_month_detail.description
+            tt_content_defValues {
+                CType = eventnews_newsmonthdetail
+            }
+        }
     }
 }

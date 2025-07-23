@@ -10,8 +10,8 @@ use GeorgRinger\Eventnews\Event\NewsMonthActionEvent;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
@@ -38,6 +38,11 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         ?array $overwriteDemand = null
     ): ResponseInterface
     {
+        $possibleRedirect = $this->forwardToDetailActionWhenRequested();
+        if ($possibleRedirect) {
+            return $possibleRedirect;
+        }
+        
         $demand = $this->getDemand($search, $overwriteDemand);
         $newsRecordsWithDaySupport = $this->newsRepository->findDemanded($demand);
         $demand->setRespectDay(false);
@@ -135,6 +140,33 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             'month' => $date->format('n'),
             'year' => $date->format('Y'),
         ];
+    }
+    
+    /**
+     * When month action is called along with a news argument, we forward to detail action.
+     */
+    protected function forwardToDetailActionWhenRequested(): ?ForwardResponse
+    {
+        if (!$this->isActionAllowed('detail')
+            || !$this->request->hasArgument('news')
+            ) {
+                return null;
+            }
+            
+            $forwardResponse = new ForwardResponse('detail');
+            return $forwardResponse->withExtensionName('news')->withArguments(['news' => $this->request->getArgument('news')]);
+    }
+    
+    /**
+     * Checks whether an action is enabled in switchableControllerActions configuration
+     */
+    protected function isActionAllowed(string $action): bool
+    {
+        $frameworkConfiguration = $this->configurationManager->getConfiguration($this->configurationManager::CONFIGURATION_TYPE_FRAMEWORK);
+        // @extensionScannerIgnoreLine
+        $allowedActions = $frameworkConfiguration['controllerConfiguration'][self::class]['actions'] ?? [];
+        
+        return \in_array($action, $allowedActions, true);
     }
 
     public function injectLocationRepository(LocationRepository $locationRepository): void
