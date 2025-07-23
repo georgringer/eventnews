@@ -147,7 +147,10 @@
 <f:section name="listItem">
 	<div class="col-md-12" style="border: 1px solid #ccc;">
 		<strong>
-			<n:link newsItem="{n}" settings="{settings}">{n.title}</n:link>
+			<f:if condition="{contentObjectData.CType} == 'eventnews_newsmonth' || {contentObjectData.pid} != {settings.detailPid}">
+				<f:then><n:link newsItem="{n}" settings="{settings}">{n.title}</n:link></f:then>
+				<f:else><f:link.action action="month" arguments="{news:n}">{n.title}</f:link.action></f:else>
+			</f:if>
 			| {f:format.date(date:n.datetime,format:'%d.%m')}</strong>
 		<ul>
 			<f:if condition="{n.organizer}">
