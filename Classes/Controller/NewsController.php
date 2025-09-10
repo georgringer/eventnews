@@ -7,6 +7,7 @@ use GeorgRinger\Eventnews\Domain\Model\Dto\SearchDemand;
 use GeorgRinger\Eventnews\Domain\Repository\LocationRepository;
 use GeorgRinger\Eventnews\Domain\Repository\OrganizerRepository;
 use GeorgRinger\Eventnews\Event\NewsMonthActionEvent;
+use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -78,6 +79,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         $event = $this->eventDispatcher->dispatch(new NewsMonthActionEvent($this, $assignedValues));
         $this->view->assignMultiple($event->getAssignedValues());
+
+        Cache::addPageCacheTagsByDemandObject($demand);
         return $this->htmlResponse();
     }
 

@@ -6,7 +6,9 @@
     [
         \GeorgRinger\Eventnews\Controller\NewsController::class => 'month',
     ],
-    [],
+    [
+        \GeorgRinger\Eventnews\Controller\NewsController::class => 'month',
+    ],
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
 
