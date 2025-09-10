@@ -7,7 +7,15 @@
 				<source>Month view provided by EXT:eventnews</source>
 			</trans-unit>
 			<trans-unit id="plugin.news_month.description" xml:space="preserve">
-				<source>Month calendar sheet with articles flagged as event</source>
+				<source>Month calendar sheet with articles flagged as event
+					This plugin cannot render the detail view of news articles.</source>
+			</trans-unit>
+			<trans-unit id="plugin.news_month_detail.title" xml:space="preserve">
+				<source>Month view provided by EXT:eventnews (incl. detail view)</source>
+			</trans-unit>
+			<trans-unit id="plugin.news_month_detail.description" xml:space="preserve">
+				<source>Month calendar sheet with articles flagged as event
+					This plugin is capable of rendering the detail view as well.</source>
 			</trans-unit>
 			<trans-unit id="tx_eventnews_domain_model_location">
 				<source>Location</source>
@@ -57,7 +65,7 @@
 			<trans-unit id="tx_news_domain_model_news.location_simple">
 				<source>Location simple</source>
 			</trans-unit>
-            <trans-unit id="tab.eventnews">
+			<trans-unit id="tab.eventnews">
 				<source>Event details</source>
 			</trans-unit>
 		</body>
