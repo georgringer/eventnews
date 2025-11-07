@@ -23,7 +23,7 @@
     ],
     "license": ["GPL-2.0-or-later"],
     "require": {
-        "georgringer/news": "^12.2",
+        "georgringer/news": "^12.2 || ^13.0",
         "typo3/cms-core": "^12 || ^13"
     },
     "autoload": {
