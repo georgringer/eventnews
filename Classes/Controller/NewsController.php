@@ -43,7 +43,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $newsRecordsWithDaySupport = $this->newsRepository->findDemanded($demand);
         $demand->setRespectDay(false);
         $newsRecordsWithNoDaySupport = $this->newsRepository->findDemanded($demand);
-        $categories = GeneralUtility::trimExplode(',', $this->settings['categories'] ?? [], true);
+        $categories = GeneralUtility::trimExplode(',', $this->settings['categories'] ?? '', true);
 
         /** @var CategoryRepository $categoryRepository */
         $categoryRepository = $this->categoryRepository;
