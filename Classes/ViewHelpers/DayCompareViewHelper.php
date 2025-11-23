@@ -12,45 +12,28 @@ namespace GeorgRinger\Eventnews\ViewHelpers;
 use GeorgRinger\Eventnews\Domain\Model\Dto\Demand;
 use GeorgRinger\Eventnews\Domain\Model\News as EventNews;
 use GeorgRinger\News\Domain\Model\News;
-use TYPO3\CMS\Core\Utility\HttpUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * @extensionScannerIgnoreFile
  */
 class DayCompareViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
 
-    /**
-     * Initialize arguments
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('newsItem', News::class, 'News item', true);
         $this->registerArgument('demand', Demand::class, 'demand object', true);
     }
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return bool
-     */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    )
+    public function render(): bool
     {
         $found = false;
 
         /** @var Demand $demand */
-        $demand = $arguments['demand'];
+        $demand = $this->arguments['demand'];
         /** @var EventNews $newsItem */
-        $newsItem = $arguments['newsItem'];
+        $newsItem = $this->arguments['newsItem'];
 
         $currentDay = \DateTime::createFromFormat('d-m-Y H:i:s', sprintf(
             '%s-%s-%s 00:00:00', $demand->getDay(), $demand->getMonth(), $demand->getYear()));

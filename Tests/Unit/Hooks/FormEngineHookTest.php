@@ -6,20 +6,15 @@ namespace GeorgRinger\Eventnews\Tests\Unit\Hooks;
 
 use GeorgRinger\Eventnews\Hooks\FormEngineHook;
 use GeorgRinger\Eventnews\Hooks\IconHook;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class FormEngineHookTest extends BaseTestCase
 {
 
-    /**
-     * @test
-     * @dataProvider fieldIsRemovedFromOutputProvider
-     * @param string $table
-     * @param string $field
-     * @param array $row
-     * @param string $out
-     * @param string $expected
-     */
+    #[Test]
+    #[DataProvider('fieldIsRemovedFromOutputProvider')]
     public function fieldIsRemovedFromOutput(string $table, string $field, array $row, string $out, string $expected): void
     {
         $instance = new FormEngineHook();
@@ -27,10 +22,7 @@ class FormEngineHookTest extends BaseTestCase
         $this->assertEquals($expected, $out);
     }
 
-    /**
-     * @return array
-     */
-    public function fieldIsRemovedFromOutputProvider(): array
+    public static function fieldIsRemovedFromOutputProvider(): array
     {
         return [
             'valid field' => ['tx_news_domain_model_news', 'organizer', ['is_event' => 0], 'bla', ''],

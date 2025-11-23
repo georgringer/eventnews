@@ -12,7 +12,6 @@ namespace GeorgRinger\Eventnews\EventListener;
  */
 
 use TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -25,7 +24,7 @@ class AfterFlexFormDataStructureParsedEventListener
         $identifier = $event->getIdentifier();
 
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $this->isActiveOnKey($identifier['dataStructureKey'])) {
-            $content = file_get_contents($this->getPath());
+            $content = file_get_contents(ExtensionManagementUtility::extPath('eventnews') . 'Configuration/Flexforms/flexform_eventnews.xml');
             if ($content) {
                 $dataStructure['sheets']['extraEntryEventNews'] = GeneralUtility::xml2array($content);
             }
@@ -35,20 +34,6 @@ class AfterFlexFormDataStructureParsedEventListener
 
     private function isActiveOnKey(string $dataStructureKey): bool
     {
-        $validKeys = ['*,eventnews_', '*,news_'];
-        $active = false;
-        foreach($validKeys as $prefix) {
-            if (substr($dataStructureKey, 0, strlen($prefix)) === $prefix) {
-                $active = true;
-                break;
-            }
-        }
-        return $active;
-    }
-
-    private function getPath(): string
-    {
-        $file = (new Typo3Version())->getMajorVersion() >= 12 ? 'flexform_eventnews12.xml' : 'flexform_eventnews.xml';
-        return ExtensionManagementUtility::extPath('eventnews') . 'Configuration/Flexforms/' . $file;
+        return $dataStructureKey === 'eventnews_newsmonth';
     }
 }

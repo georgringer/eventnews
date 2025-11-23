@@ -20,7 +20,7 @@ class OrganizerViewHelper extends AbstractViewHelper
      */
     protected $escapeOutput = false;
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('organizers', 'object', 'Organizers');
@@ -28,10 +28,7 @@ class OrganizerViewHelper extends AbstractViewHelper
         $this->registerArgument('as', 'string', 'as variable', false, 'filteredOrganizers');
     }
 
-    /**
-     * @return string
-     */
-    public function render()
+    public function render(): string
     {
         $organizers = $this->arguments['organizers'];
         $news = $this->arguments['news'];

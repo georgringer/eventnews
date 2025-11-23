@@ -16,17 +16,14 @@ class CalendarViewHelper extends AbstractViewHelper
     /**
      * register arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('newsList', 'mixed', '', true);
         $this->registerArgument('demand', Demand::class, '', true);
         $this->registerArgument('firstDayOfWeek', 'integer', '0 for Sunday, 1 for Monday', false, 0);
     }
 
-    /**
-     * @return string Rendered result
-     */
-    public function render()
+    public function render(): string
     {
         /** @var Demand $demand */
         $demand = $this->arguments['demand'];
@@ -99,7 +96,7 @@ class CalendarViewHelper extends AbstractViewHelper
             $newsBeginDate = $item->getDatetime()->format('Y-m-d');
             $day = date('Y-m-d', $currentDay->getTimestamp());
 
-            if ($item->getEventEnd() == 0) {
+            if (!$item->getEventEnd()) {
                 if ($newsBeginDate === $day) {
                     $relevantNews[] = $item;
                 }

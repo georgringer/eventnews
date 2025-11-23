@@ -12,7 +12,7 @@ use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Frontend\Page\PageInformation;
 
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
@@ -22,8 +22,6 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 class NewsController extends \GeorgRinger\News\Controller\NewsController
 {
-    const SIGNAL_NEWS_MONTH_ACTION = 'monthAction';
-
     protected LocationRepository $locationRepository;
     protected OrganizerRepository $organizerRepository;
 
@@ -58,7 +56,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $organizerPidList = $this->settings['startingpointOrganizer'] ?? $this->settings['startingpoint'];
         $locationPidList = $this->settings['startingpointLocation'] ?? $this->settings['startingpoint'];
 
-        $tsfe = $this->request->getAttribute('frontend.controller');
+        /** @var PageInformation $pageInformation */
+        $pageInformation = $this->request->getAttribute('frontend.page.information');
 
         $assignedValues = [
             'search' => $search,
@@ -67,7 +66,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
             // @extensionScannerIgnoreLine
-            'currentPageId' => $tsfe->id,
+            'currentPageId' => $pageInformation->getId(),
             'allOrganizers' => $this->organizerRepository->findByStartingPoint($organizerPidList),
             'allLocations' => $this->locationRepository->findByStartingPoint($locationPidList),
             'allCategories' => empty($categories) ? [] : $categoryRepository->findByIdList($categories),

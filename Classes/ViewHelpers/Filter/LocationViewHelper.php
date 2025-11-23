@@ -20,18 +20,14 @@ class LocationViewHelper extends AbstractViewHelper
      */
     protected $escapeOutput = false;
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('locations', 'object', 'Locations');
         $this->registerArgument('news', 'object', 'News');
         $this->registerArgument('as', 'string', 'as variable', false, 'filteredLocations');
     }
 
-    /**
-     * @return string
-     */
-    public function render()
+    public function render(): string
     {
         $locations = $this->arguments['locations'];
         $news = $this->arguments['news'];

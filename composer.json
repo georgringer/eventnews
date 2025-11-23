@@ -23,9 +23,20 @@
     ],
     "license": ["GPL-2.0-or-later"],
     "require": {
-        "georgringer/news": "^12.2 || ^13.0",
-        "typo3/cms-core": "^12 || ^13"
+        "georgringer/news": "^13 || ^14",
+        "typo3/cms-core": "^13 || ^14"
     },
+	"require-dev": {
+		"a9f/typo3-fractor": "@dev",
+		"friendsofphp/php-cs-fixer": "^3.89.2",
+		"phpstan/phpdoc-parser": "^1.33.0",
+		"phpunit/phpunit": "^10.5.58",
+		"ssch/typo3-rector": "^3.7",
+		"typo3/cms-seo": "^13.4.20 || ^14.0",
+		"typo3/coding-standards": "^0.8.0",
+		"typo3/testing-framework": "^8.3.1",
+		"webmozart/assert": "^1.12.1"
+	},
     "autoload": {
         "psr-4": {
             "GeorgRinger\\Eventnews\\": "Classes"
@@ -36,15 +47,27 @@
             "GeorgRinger\\Eventnews\\Tests\\": "Tests"
         }
     },
-    "config": {
-        "vendor-dir": ".Build/vendor",
-        "bin-dir": ".Build/bin"
-    },
-    "extra": {
-        "typo3/cms": {
-            "extension-key": "eventnews",
-            "cms-package-dir": "{$vendor-dir}/typo3/cms",
-            "web-dir": ".Build/Web"
-        }
-    }
+	"config": {
+		"allow-plugins": {
+			"a9f/fractor-extension-installer": true,
+			"sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		},
+		"bin-dir": ".Build/bin",
+		"lock": false,
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor"
+	},
+	"extra": {
+		"typo3/cms": {
+			"app-dir": ".Build",
+			"extension-key": "eventnews",
+			"web-dir": ".Build/Web"
+		}
+	},
+	"scripts": {
+		"cs": "PHP_CS_FIXER_IGNORE_ENV=1 php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+		"csfix": "PHP_CS_FIXER_IGNORE_ENV=1 php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./"
+	}
 }
