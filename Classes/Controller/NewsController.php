@@ -7,8 +7,8 @@ use GeorgRinger\Eventnews\Domain\Model\Dto\SearchDemand;
 use GeorgRinger\Eventnews\Domain\Repository\LocationRepository;
 use GeorgRinger\Eventnews\Domain\Repository\OrganizerRepository;
 use GeorgRinger\Eventnews\Event\NewsMonthActionEvent;
-use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Utility\Cache;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -35,8 +35,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     public function monthAction(
         ?SearchDemand $search = null,
         ?array $overwriteDemand = null
-    ): ResponseInterface
-    {
+    ): ResponseInterface {
         $demand = $this->getDemand($search, $overwriteDemand);
         $newsRecordsWithDaySupport = $this->newsRepository->findDemanded($demand);
         $demand->setRespectDay(false);
@@ -86,11 +85,12 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     protected function getDemand(
         ?SearchDemand $search = null,
         ?array $overwriteDemand = null
-    ): Demand
-    {
+    ): Demand {
         /** @var Demand $demand */
-        $demand = $this->createDemandObjectFromSettings($this->settings,
-            Demand::class);
+        $demand = $this->createDemandObjectFromSettings(
+            $this->settings,
+            Demand::class
+        );
         if (is_array($overwriteDemand) && !empty($overwriteDemand)) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }

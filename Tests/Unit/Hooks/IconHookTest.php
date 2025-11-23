@@ -11,14 +11,13 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class IconHookTest extends BaseTestCase
 {
-
     #[Test]
     #[DataProvider('iconForEventNewsIsChangedProvider')]
     public function iconForEventNewsIsChanged(array $configuration, $returnValue): void
     {
         $instance = new IconHook();
         // @extensionScannerIgnoreLine
-        $this->assertEquals($returnValue, $instance->run($configuration));
+        self::assertEquals($returnValue, $instance->run($configuration));
     }
 
     public static function iconForEventNewsIsChangedProvider(): array

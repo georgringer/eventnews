@@ -7,9 +7,8 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class OrganizerTest extends BaseTestCase
 {
-
     /** @var Organizer */
-    protected $subject = null;
+    protected $subject;
 
     protected function setUp(): void
     {
@@ -24,7 +23,7 @@ class OrganizerTest extends BaseTestCase
         $value = 'A title';
         $this->subject->setTitle($value);
 
-        $this->assertEquals($value, $this->subject->getTitle());
+        self::assertEquals($value, $this->subject->getTitle());
     }
 
     /**
@@ -35,7 +34,7 @@ class OrganizerTest extends BaseTestCase
         $value = 'A description';
         $this->subject->setDescription($value);
 
-        $this->assertEquals($value, $this->subject->getDescription());
+        self::assertEquals($value, $this->subject->getDescription());
     }
 
     /**
@@ -46,6 +45,6 @@ class OrganizerTest extends BaseTestCase
         $value = 'www.typo3.org';
         $this->subject->setLink($value);
 
-        $this->assertEquals($value, $this->subject->getLink());
+        self::assertEquals($value, $this->subject->getLink());
     }
 }

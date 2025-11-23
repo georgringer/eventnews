@@ -13,7 +13,6 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 
 class EventNewsDataHandlerHook
 {
-
     /**
      * Save a new news record as event if stated by tsconfig
      *
@@ -22,7 +21,6 @@ class EventNewsDataHandlerHook
      * @param int $recordUid id of the record
      * @param array $fields fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject parent Object
-     * @return void
      */
     public function processDatamap_postProcessFieldArray(
         $status,

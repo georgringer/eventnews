@@ -7,11 +7,10 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class LocationTest extends BaseTestCase
 {
-
     /**
      * @var Location
      */
-    protected $subject = null;
+    protected $subject;
 
     protected function setUp(): void
     {
@@ -26,7 +25,7 @@ class LocationTest extends BaseTestCase
         $value = 'A title';
         $this->subject->setTitle($value);
 
-        $this->assertEquals($value, $this->subject->getTitle());
+        self::assertEquals($value, $this->subject->getTitle());
     }
 
     /**
@@ -37,7 +36,7 @@ class LocationTest extends BaseTestCase
         $value = 'A description';
         $this->subject->setDescription($value);
 
-        $this->assertEquals($value, $this->subject->getDescription());
+        self::assertEquals($value, $this->subject->getDescription());
     }
 
     /**
@@ -48,7 +47,7 @@ class LocationTest extends BaseTestCase
         $value = 1.2;
         $this->subject->setLng($value);
 
-        $this->assertEquals($value, $this->subject->getLng());
+        self::assertEquals($value, $this->subject->getLng());
     }
 
     /**
@@ -59,7 +58,7 @@ class LocationTest extends BaseTestCase
         $value = 2.3;
         $this->subject->setLat($value);
 
-        $this->assertEquals($value, $this->subject->getLat());
+        self::assertEquals($value, $this->subject->getLat());
     }
 
     /**
@@ -70,6 +69,6 @@ class LocationTest extends BaseTestCase
         $value = 'montagmorgen.at';
         $this->subject->setLink($value);
 
-        $this->assertEquals($value, $this->subject->getLink());
+        self::assertEquals($value, $this->subject->getLink());
     }
 }

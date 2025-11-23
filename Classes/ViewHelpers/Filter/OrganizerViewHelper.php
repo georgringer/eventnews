@@ -14,7 +14,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class OrganizerViewHelper extends AbstractViewHelper
 {
-
     /**
      * @var bool
      */

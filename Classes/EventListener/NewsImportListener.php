@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\Eventnews\EventListener;
@@ -17,7 +18,6 @@ use GeorgRinger\News\Event\NewsImportPostHydrateEvent;
  */
 class NewsImportListener
 {
-
     public function __invoke(NewsImportPostHydrateEvent $event)
     {
         $importData = $event->getImportItem();

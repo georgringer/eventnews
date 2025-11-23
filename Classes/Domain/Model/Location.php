@@ -16,7 +16,6 @@ namespace GeorgRinger\Eventnews\Domain\Model;
  */
 class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     /**
      * title
      *
@@ -66,7 +65,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the title
      *
      * @param string $title
-     * @return void
      */
     public function setTitle($title)
     {
@@ -87,7 +85,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the description
      *
      * @param string $description
-     * @return void
      */
     public function setDescription($description)
     {
@@ -108,7 +105,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the lat
      *
      * @param float $lat
-     * @return void
      */
     public function setLat($lat)
     {
@@ -129,7 +125,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the lng
      *
      * @param float $lng
-     * @return void
      */
     public function setLng($lng)
     {
@@ -150,7 +145,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the link
      *
      * @param string $link
-     * @return void
      */
     public function setLink($link)
     {

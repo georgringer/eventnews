@@ -19,7 +19,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class DayCompareViewHelper extends AbstractViewHelper
 {
-
     public function initializeArguments(): void
     {
         $this->registerArgument('newsItem', News::class, 'News item', true);
@@ -36,7 +35,11 @@ class DayCompareViewHelper extends AbstractViewHelper
         $newsItem = $this->arguments['newsItem'];
 
         $currentDay = \DateTime::createFromFormat('d-m-Y H:i:s', sprintf(
-            '%s-%s-%s 00:00:00', $demand->getDay(), $demand->getMonth(), $demand->getYear()));
+            '%s-%s-%s 00:00:00',
+            $demand->getDay(),
+            $demand->getMonth(),
+            $demand->getYear()
+        ));
         $currentDay->setTimezone($newsItem->getDatetime()->getTimezone());
         $newsBeginDate = clone $newsItem->getDatetime();
         $newsBeginDate->setTime(0, 0);
@@ -55,6 +58,5 @@ class DayCompareViewHelper extends AbstractViewHelper
 
         return $found;
     }
-
 
 }

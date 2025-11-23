@@ -18,7 +18,6 @@ use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
  */
 class EventNewsRowInitializeNew implements FormDataProviderInterface
 {
-
     /**
      * @param array $result
      * @return array

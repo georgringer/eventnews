@@ -7,9 +7,8 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class DemandTest extends BaseTestCase
 {
-
     /** @var Demand */
-    protected $subject = null;
+    protected $subject;
 
     protected function setUp(): void
     {
@@ -19,26 +18,26 @@ class DemandTest extends BaseTestCase
     /**
      * @test
      */
-    public function setOrganizer():void
+    public function setOrganizer(): void
     {
         $value = [
             3 => 3,
-            4 => 4
+            4 => 4,
         ];
         $this->subject->setOrganizers($value);
 
-        $this->assertEquals($value, $this->subject->getOrganizers());
+        self::assertEquals($value, $this->subject->getOrganizers());
     }
 
     /**
      * @test
      */
-    public function setLocation():void
+    public function setLocation(): void
     {
         $value = [
             4 => 4,
             5 => 5,
-            6 => null
+            6 => null,
         ];
         $valueCleaned = [
             4 => 4,
@@ -46,6 +45,6 @@ class DemandTest extends BaseTestCase
         ];
         $this->subject->setLocations($value);
 
-        $this->assertEquals($valueCleaned, $this->subject->getLocations());
+        self::assertEquals($valueCleaned, $this->subject->getLocations());
     }
 }

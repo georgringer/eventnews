@@ -50,7 +50,8 @@ class AbstractRepository extends Repository
             return $query->matching(
                 $query->logicalAnd(
                     $query->in('pid', $pidList)
-                ))->execute();
+                )
+            )->execute();
         }
 
         return $query->execute();

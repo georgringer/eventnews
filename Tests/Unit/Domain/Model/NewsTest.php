@@ -9,11 +9,10 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class NewsTest extends BaseTestCase
 {
-
     /**
      * @var News
      */
-    protected $subject = null;
+    protected $subject;
 
     protected function setUp(): void
     {
@@ -28,7 +27,7 @@ class NewsTest extends BaseTestCase
         $value = true;
         $this->subject->setIsEvent($value);
 
-        $this->assertEquals($value, $this->subject->getIsEvent());
+        self::assertEquals($value, $this->subject->getIsEvent());
     }
 
     /**
@@ -39,7 +38,7 @@ class NewsTest extends BaseTestCase
         $value = true;
         $this->subject->setFullDay($value);
 
-        $this->assertEquals($value, $this->subject->getFullDay());
+        self::assertEquals($value, $this->subject->getFullDay());
     }
 
     /**
@@ -50,7 +49,7 @@ class NewsTest extends BaseTestCase
         $value = new \DateTime('2014-10-10');
         $this->subject->setEventEnd($value);
 
-        $this->assertEquals($value, $this->subject->getEventEnd());
+        self::assertEquals($value, $this->subject->getEventEnd());
     }
 
     /**
@@ -62,7 +61,7 @@ class NewsTest extends BaseTestCase
         $value->setTitle('Organizer 1');
         $this->subject->setOrganizer($value);
 
-        $this->assertEquals($value, $this->subject->getOrganizer());
+        self::assertEquals($value, $this->subject->getOrganizer());
     }
 
     /**
@@ -74,6 +73,6 @@ class NewsTest extends BaseTestCase
         $value->setTitle('Location1 1');
         $this->subject->setLocation($value);
 
-        $this->assertEquals($value, $this->subject->getLocation());
+        self::assertEquals($value, $this->subject->getLocation());
     }
 }

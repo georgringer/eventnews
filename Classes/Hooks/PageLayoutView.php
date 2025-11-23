@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\Eventnews\Hooks;
@@ -15,7 +16,6 @@ use TYPO3\CMS\Core\Localization\LanguageService;
  */
 class PageLayoutView
 {
-
     /**
      * Provide an extension summary for the month selection
      */

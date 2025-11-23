@@ -7,8 +7,8 @@ $fields = [
         'onChange' => 'reload',
         'config' => [
             'type' => 'check',
-            'default' => 0
-        ]
+            'default' => 0,
+        ],
     ],
     'full_day' => [
         'exclude' => true,
@@ -16,8 +16,8 @@ $fields = [
         'label' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_news.full_day',
         'config' => [
             'type' => 'check',
-            'default' => 0
-        ]
+            'default' => 0,
+        ],
     ],
     'event_end' => [
         'exclude' => true,
@@ -41,7 +41,7 @@ $fields = [
             'foreign_table' => 'tx_eventnews_domain_model_organizer',
             'foreign_table_where' => 'ORDER BY tx_eventnews_domain_model_organizer.title',
             'minitems' => 0,
-            'maxitems' => 1
+            'maxitems' => 1,
         ],
     ],
     'location' => [
@@ -67,7 +67,7 @@ $fields = [
         'label' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_news.organizer_simple',
         'config' => [
             'type' => 'input',
-            'size' => 15
+            'size' => 15,
         ],
     ],
     'location_simple' => [
@@ -76,18 +76,18 @@ $fields = [
         'label' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_news.location_simple',
         'config' => [
             'type' => 'input',
-            'size' => 15
+            'size' => 15,
         ],
-    ]
+    ],
 ];
 
 $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['palette_event'] = [
     'canNotCollapse' => true,
-    'showitem' => 'event_end,full_day,'
+    'showitem' => 'event_end,full_day,',
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['palette_eventfields'] = [
     'canNotCollapse' => true,
-    'showitem' => 'organizer,organizer_simple, --linebreak--,location,location_simple'
+    'showitem' => 'organizer,organizer_simple, --linebreak--,location,location_simple',
 ];
 $GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['typeicon_classes']['userFunc'] = \GeorgRinger\Eventnews\Hooks\IconHook::class . '->run';
 

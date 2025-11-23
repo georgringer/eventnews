@@ -17,7 +17,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 class ModifyDemandRepositoryEventListener
 {
-
     public function __invoke(ModifyDemandRepositoryEvent $event): void
     {
         if (!($event->getDemand() instanceof Demand)) {
@@ -43,8 +42,7 @@ class ModifyDemandRepositoryEventListener
         DemandInterface $demand,
         QueryInterface $query,
         array &$constraints
-    ): void
-    {
+    ): void {
         $eventRestriction = $demand->getEventRestriction();
 
         /** @var QueryInterface $query */

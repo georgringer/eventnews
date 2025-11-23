@@ -16,7 +16,6 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
  */
 class IndexActionEventListener
 {
-
     public function __invoke(AdministrationIndexActionEvent $event)
     {
         $assignedValues = $event->getAssignedValues();

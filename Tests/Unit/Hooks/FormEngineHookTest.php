@@ -5,21 +5,19 @@ declare(strict_types=1);
 namespace GeorgRinger\Eventnews\Tests\Unit\Hooks;
 
 use GeorgRinger\Eventnews\Hooks\FormEngineHook;
-use GeorgRinger\Eventnews\Hooks\IconHook;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class FormEngineHookTest extends BaseTestCase
 {
-
     #[Test]
     #[DataProvider('fieldIsRemovedFromOutputProvider')]
     public function fieldIsRemovedFromOutput(string $table, string $field, array $row, string $out, string $expected): void
     {
         $instance = new FormEngineHook();
         $instance->getSingleField_postProcess($table, $field, $row, $out);
-        $this->assertEquals($expected, $out);
+        self::assertEquals($expected, $out);
     }
 
     public static function fieldIsRemovedFromOutputProvider(): array

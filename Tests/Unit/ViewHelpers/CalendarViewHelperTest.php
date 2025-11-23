@@ -10,7 +10,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class CalendarViewHelperTest extends BaseTestCase
 {
-
     #[Test]
     #[DataProvider('newsOfADayProvider')]
     public function getCorrectNewsOfADay($day, $list): void
@@ -25,7 +24,7 @@ class CalendarViewHelperTest extends BaseTestCase
             $newsTitles[] = $news->getTitle();
         }
 
-        $this->assertEquals($list, implode(',', $newsTitles));
+        self::assertEquals($list, implode(',', $newsTitles));
     }
 
     /**

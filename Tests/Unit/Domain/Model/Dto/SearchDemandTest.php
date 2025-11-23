@@ -7,9 +7,8 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class SearchDemandTest extends BaseTestCase
 {
-
     /** @var SearchDemand */
-    protected $subject = null;
+    protected $subject;
 
     protected function setUp(): void
     {
@@ -23,11 +22,11 @@ class SearchDemandTest extends BaseTestCase
     {
         $value = [
             3 => 3,
-            4 => 4
+            4 => 4,
         ];
         $this->subject->setOrganizers($value);
 
-        $this->assertEquals($value, $this->subject->getOrganizers());
+        self::assertEquals($value, $this->subject->getOrganizers());
     }
 
     /**
@@ -42,7 +41,7 @@ class SearchDemandTest extends BaseTestCase
 
         $this->subject->setLocations($value);
 
-        $this->assertEquals($value, $this->subject->getLocations());
+        self::assertEquals($value, $this->subject->getLocations());
     }
 
     /**
@@ -57,6 +56,6 @@ class SearchDemandTest extends BaseTestCase
 
         $this->subject->setCategories($value);
 
-        $this->assertEquals($value, $this->subject->getCategories());
+        self::assertEquals($value, $this->subject->getCategories());
     }
 }
