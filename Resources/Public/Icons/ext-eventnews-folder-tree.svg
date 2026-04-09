@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="#800000" d="M16 4v10H0V2h7l1.3 2H16z"/><path opacity=".43" d="M16 5H8.3L7 7H0V4h16v1z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <style>
+        .ico-folder { fill: #800000; }
+        .ico-folder-overlay { fill: #ffffff; opacity: 0.43; }
+
+        @media (prefers-color-scheme: dark) {
+            .ico-folder { fill: oklch(from #ffffff l c h / 0.75); stroke: #800000; stroke-width: 2px }
+            .ico-folder-overlay { fill: oklch(from #800000 l c h / 0.5); }
+        }
+    </style>
+
+    <path class="ico-folder" d="M16 4v10H0V2h7l1.3 2H16z"/>
+    <path class="ico-folder-overlay" d="M16 5H8.3L7 7H0V4h16v1z"/>
+</svg>
