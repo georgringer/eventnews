@@ -1,16 +1,13 @@
 <html lang="en">
 
 <div class="form-group">
-    <label for="eventNewsRestriction" class="col-xs-4 form-label control-label">
+    <label for="eventNewsRestriction" class="form-label">
         {f:translate(key:'LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction')}
     </label>
-
-    <div class="col-xs-8">
-        <select class="form-control" name="tx_newsadministration_web_newsadministrationadministration[demand][eventNewsRestriction]" id="eventNewsRestriction">
-            <option {f:if(condition:'{vars.demand.eventNewsRestriction} == 0',then:'selected')} value="0"></option>
-            <option {f:if(condition:'{vars.demand.eventNewsRestriction} == 1',then:'selected')} value="1">{f:translate(key: 'LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.1')}</option>
-            <option {f:if(condition:'{vars.demand.eventNewsRestriction} == 2',then:'selected')} value="2">{f:translate(key: 'LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.2')}</option>
-        </select>
-    </div>
+    <select class="form-select" name="tx_newsadministration_web_newsadministrationadministration[demand][eventNewsRestriction]" id="eventNewsRestriction">
+        <option {f:if(condition:'{vars.demand.eventNewsRestriction} == 0',then:'selected')} value="0"></option>
+        <option {f:if(condition:'{vars.demand.eventNewsRestriction} == 1',then:'selected')} value="1">{f:translate(key: 'LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.1')}</option>
+        <option {f:if(condition:'{vars.demand.eventNewsRestriction} == 2',then:'selected')} value="2">{f:translate(key: 'LLL:EXT:eventnews/Resources/Private/Language/locallang.xlf:flexforms_general.eventRestriction.2')}</option>
+    </select>
 </div>
 </html>

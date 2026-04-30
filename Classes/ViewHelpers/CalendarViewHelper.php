@@ -16,7 +16,7 @@ class CalendarViewHelper extends AbstractViewHelper
     /**
      * register arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('newsList', 'mixed', '', true);
         $this->registerArgument('demand', Demand::class, '', true);
@@ -26,7 +26,7 @@ class CalendarViewHelper extends AbstractViewHelper
     /**
      * @return string Rendered result
      */
-    public function render()
+    public function render(): string
     {
         /** @var Demand $demand */
         $demand = $this->arguments['demand'];
