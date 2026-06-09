@@ -23,6 +23,9 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRe
     'depends' => [
         \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
     ],
+    'before' => [
+        \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDateTimeFields::class,
+    ],
 ];
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['eventnews']
