@@ -6,6 +6,7 @@ use GeorgRinger\Eventnews\Hooks\FormEngineHook;
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use GeorgRinger\Eventnews\Hooks\PageLayoutView;
 use GeorgRinger\Eventnews\Backend\FormDataProvider\EventNewsRowInitializeNew;
+use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDateTimeFields;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew;
 use GeorgRinger\Eventnews\Hooks\Backend\EventNewsDataHandlerHook;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -33,7 +34,10 @@ $GLOBALS['TYPO3_CONF_VARS']['EXT']['news'][PluginPreviewRenderer::class]['extens
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][EventNewsRowInitializeNew::class] = [
     'depends' => [
         DatabaseRowInitializeNew::class,
-    ]
+    ],
+    'before' => [
+        DatabaseRowDateTimeFields::class,
+    ],
 ];
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['eventnews'] =
