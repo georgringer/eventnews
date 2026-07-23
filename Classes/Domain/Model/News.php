@@ -17,202 +17,145 @@ class News extends \GeorgRinger\News\Domain\Model\News
 
     /**
      * isEvent
-     *
-     * @var bool
      */
-    protected $isEvent = false;
+    protected bool $isEvent = false;
 
     /**
      * fullDay
-     *
-     * @var bool
      */
-    protected $fullDay = false;
+    protected bool $fullDay = false;
 
     /**
      * eventEnd
-     *
-     * @var \DateTime
      */
-    protected $eventEnd = null;
+    protected ?\DateTime $eventEnd = null;
 
     /**
      * organizer
-     *
-     * @var \GeorgRinger\Eventnews\Domain\Model\Organizer
      */
-    protected $organizer = null;
+    protected ?\GeorgRinger\Eventnews\Domain\Model\Organizer $organizer = null;
 
     /**
      * location
-     *
-     * @var \GeorgRinger\Eventnews\Domain\Model\Location
      */
-    protected $location = null;
+    protected ?\GeorgRinger\Eventnews\Domain\Model\Location $location = null;
 
-    /**
-     * @var string
-     */
-    protected $organizerSimple;
+    protected string $organizerSimple = '';
 
-    /**
-     * @var string
-     */
-    protected $locationSimple;
+    protected string $locationSimple = '';
 
     /**
      * Returns the isEvent
-     *
-     * @return bool $isEvent
      */
-    public function getIsEvent()
+    public function getIsEvent(): bool
     {
         return $this->isEvent;
     }
 
     /**
      * Sets the isEvent
-     *
-     * @param bool $isEvent
-     * @return void
      */
-    public function setIsEvent($isEvent)
+    public function setIsEvent(bool $isEvent): void
     {
         $this->isEvent = $isEvent;
     }
 
     /**
      * Returns the boolean state of isEvent
-     *
-     * @return bool
      */
-    public function isIsEvent()
+    public function isIsEvent(): bool
     {
         return $this->isEvent;
     }
 
     /**
      * Returns the fullDay
-     *
-     * @return bool $fullDay
      */
-    public function getFullDay()
+    public function getFullDay(): bool
     {
         return $this->fullDay;
     }
 
     /**
      * Sets the fullDay
-     *
-     * @param bool $fullDay
-     * @return void
      */
-    public function setFullDay($fullDay)
+    public function setFullDay(bool $fullDay): void
     {
         $this->fullDay = $fullDay;
     }
 
     /**
      * Returns the boolean state of fullDay
-     *
-     * @return bool
      */
-    public function isFullDay()
+    public function isFullDay(): bool
     {
         return $this->fullDay;
     }
 
     /**
      * Returns the eventEnd
-     *
-     * @return \DateTime $eventEnd
      */
-    public function getEventEnd()
+    public function getEventEnd(): ?\DateTime
     {
         return $this->eventEnd;
     }
 
     /**
      * Sets the eventEnd
-     *
-     * @param \DateTime $eventEnd
-     * @return void
      */
-    public function setEventEnd(\DateTime $eventEnd)
+    public function setEventEnd(?\DateTime $eventEnd): void
     {
         $this->eventEnd = $eventEnd;
     }
 
     /**
      * Returns the organizer
-     *
-     * @return \GeorgRinger\Eventnews\Domain\Model\Organizer $organizer
      */
-    public function getOrganizer()
+    public function getOrganizer(): ?\GeorgRinger\Eventnews\Domain\Model\Organizer
     {
         return $this->organizer;
     }
 
     /**
      * Sets the organizer
-     *
-     * @param \GeorgRinger\Eventnews\Domain\Model\Organizer $organizer
-     * @return void
      */
-    public function setOrganizer(\GeorgRinger\Eventnews\Domain\Model\Organizer $organizer)
+    public function setOrganizer(?\GeorgRinger\Eventnews\Domain\Model\Organizer $organizer): void
     {
         $this->organizer = $organizer;
     }
 
     /**
      * Returns the location
-     *
-     * @return \GeorgRinger\Eventnews\Domain\Model\Location $location
      */
-    public function getLocation()
+    public function getLocation(): ?\GeorgRinger\Eventnews\Domain\Model\Location
     {
         return $this->location;
     }
 
     /**
      * Sets the location
-     *
-     * @param \GeorgRinger\Eventnews\Domain\Model\Location $location
-     * @return void
      */
-    public function setLocation(\GeorgRinger\Eventnews\Domain\Model\Location $location)
+    public function setLocation(?\GeorgRinger\Eventnews\Domain\Model\Location $location): void
     {
         $this->location = $location;
     }
 
-    /**
-     * @return string
-     */
-    public function getOrganizerSimple()
+    public function getOrganizerSimple(): string
     {
         return $this->organizerSimple;
     }
 
-    /**
-     * @param string $organizerSimple
-     */
-    public function setOrganizerSimple($organizerSimple)
+    public function setOrganizerSimple(string $organizerSimple): void
     {
         $this->organizerSimple = $organizerSimple;
     }
 
-    /**
-     * @return string
-     */
-    public function getLocationSimple()
+    public function getLocationSimple(): string
     {
         return $this->locationSimple;
     }
 
-    /**
-     * @param string $locationSimple
-     */
-    public function setLocationSimple($locationSimple)
+    public function setLocationSimple(string $locationSimple): void
     {
         $this->locationSimple = $locationSimple;
     }
