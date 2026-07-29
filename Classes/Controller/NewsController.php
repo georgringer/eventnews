@@ -58,7 +58,10 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $organizerPidList = $this->settings['startingpointOrganizer'] ?? $this->settings['startingpoint'];
         $locationPidList = $this->settings['startingpointLocation'] ?? $this->settings['startingpoint'];
 
-        $tsfe = $this->request->getAttribute('frontend.controller');
+        // TypoScriptFrontendController (and the 'frontend.controller' request
+        // attribute) was removed in TYPO3 14; use the PageInformation
+        // attribute instead, which replaces it for page-related properties.
+        $pageInformation = $this->request->getAttribute('frontend.page.information');
 
         $assignedValues = [
             'search' => $search,
@@ -66,8 +69,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             'newsWithNoDaySupport' => $newsRecordsWithNoDaySupport,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-            // @extensionScannerIgnoreLine
-            'currentPageId' => $tsfe->id,
+            'currentPageId' => $pageInformation->getId(),
             'allOrganizers' => $this->organizerRepository->findByStartingPoint($organizerPidList),
             'allLocations' => $this->locationRepository->findByStartingPoint($locationPidList),
             'allCategories' => empty($categories) ? [] : $categoryRepository->findByIdList($categories),
