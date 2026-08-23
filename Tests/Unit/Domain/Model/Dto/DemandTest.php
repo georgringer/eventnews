@@ -1,44 +1,42 @@
 <?php
 
-namespace GeorgRinger\Eventnews\Tests\Unit\Domain\Model;
+declare(strict_types=1);
+
+namespace GeorgRinger\Eventnews\Tests\Unit\Domain\Model\Dto;
 
 use GeorgRinger\Eventnews\Domain\Model\Dto\Demand;
-use TYPO3\TestingFramework\Core\BaseTestCase;
+use PHPUnit\Framework\Attributes\Test;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class DemandTest extends BaseTestCase
+class DemandTest extends UnitTestCase
 {
-
-    /** @var Demand */
-    protected $subject = null;
+    protected Demand $subject;
 
     protected function setUp(): void
     {
+        parent::setUp();
         $this->subject = new Demand();
     }
 
-    /**
-     * @test
-     */
-    public function setOrganizer():void
+    #[Test]
+    public function setOrganizers(): void
     {
         $value = [
             3 => 3,
-            4 => 4
+            4 => 4,
         ];
         $this->subject->setOrganizers($value);
 
-        $this->assertEquals($value, $this->subject->getOrganizers());
+        self::assertSame($value, $this->subject->getOrganizers());
     }
 
-    /**
-     * @test
-     */
-    public function setLocation():void
+    #[Test]
+    public function setLocationsDropsEmptyValues(): void
     {
         $value = [
             4 => 4,
             5 => 5,
-            6 => null
+            6 => null,
         ];
         $valueCleaned = [
             4 => 4,
@@ -46,6 +44,6 @@ class DemandTest extends BaseTestCase
         ];
         $this->subject->setLocations($value);
 
-        $this->assertEquals($valueCleaned, $this->subject->getLocations());
+        self::assertSame($valueCleaned, $this->subject->getLocations());
     }
 }

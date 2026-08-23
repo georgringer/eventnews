@@ -1,40 +1,40 @@
 <?php
 
-namespace GeorgRinger\Eventnews\Tests\Unit\ViewHelper;
+declare(strict_types=1);
+
+namespace GeorgRinger\Eventnews\Tests\Unit\ViewHelpers;
 
 use GeorgRinger\Eventnews\Domain\Model\News;
 use GeorgRinger\Eventnews\ViewHelpers\CalendarViewHelper;
-use TYPO3\TestingFramework\Core\BaseTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class CalendarViewHelperTest extends BaseTestCase
+class CalendarViewHelperTest extends UnitTestCase
 {
-
-    /**
-     * @test
-     * @dataProvider newsOfADayProvider
-     * @param int $day
-     * @param string $list
-     */
-    public function getCorrectNewsOfADay($day, $list): void
+    #[Test]
+    #[DataProvider('newsOfADayProvider')]
+    public function getCorrectNewsOfADay(string $day, string $list): void
     {
-        $calendarViewHelper = $this->getAccessibleMock(CalendarViewHelper::class, ['dummy']);
-
-        $currentDay = new \DateTime($day);
-        $newsOfGivenDay = $calendarViewHelper->_call('getNewsForDay', $this->generateNewsList(), $currentDay);
+        $method = new \ReflectionMethod(CalendarViewHelper::class, 'getNewsForDay');
+        $newsOfGivenDay = $method->invoke(
+            new CalendarViewHelper(),
+            self::generateNewsList(),
+            new \DateTime($day)
+        );
 
         $newsTitles = [];
         foreach ($newsOfGivenDay as $news) {
-            /** @var \GeorgRinger\Eventnews\Domain\Model\News $news */
             $newsTitles[] = $news->getTitle();
         }
 
-        $this->assertEquals($list, implode(',', $newsTitles));
+        self::assertSame($list, implode(',', $newsTitles));
     }
 
     /**
      * @return News[]
      */
-    protected function generateNewsList(): array
+    protected static function generateNewsList(): array
     {
         $newsList = [];
         $data = [
@@ -61,13 +61,10 @@ class CalendarViewHelperTest extends BaseTestCase
         foreach ($data as $item) {
             $news = new News();
             $news->setTitle($item[0]);
+            $news->setDatetime(new \DateTime($item[1]));
 
-            $beginDate = new \DateTime($item[1]);
-            $news->setDatetime($beginDate);
-
-            if (!is_null($item[2])) {
-                $endDate = new \DateTime($item[2]);
-                $news->setEventEnd($endDate);
+            if ($item[2] !== null) {
+                $news->setEventEnd(new \DateTime($item[2]));
             }
             $newsList[] = $news;
         }
@@ -75,10 +72,7 @@ class CalendarViewHelperTest extends BaseTestCase
         return $newsList;
     }
 
-    /**
-     * @return array
-     */
-    public function newsOfADayProvider(): array
+    public static function newsOfADayProvider(): array
     {
         return [
             ['2015-04-01', ''],

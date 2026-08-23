@@ -1,51 +1,47 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GeorgRinger\Eventnews\Tests\Unit\Domain\Model;
 
 use GeorgRinger\Eventnews\Domain\Model\Organizer;
-use TYPO3\TestingFramework\Core\BaseTestCase;
+use PHPUnit\Framework\Attributes\Test;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class OrganizerTest extends BaseTestCase
+class OrganizerTest extends UnitTestCase
 {
-
-    /** @var Organizer */
-    protected $subject = null;
+    protected Organizer $subject;
 
     protected function setUp(): void
     {
+        parent::setUp();
         $this->subject = new Organizer();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setTitleForStringSetsTitle(): void
     {
         $value = 'A title';
         $this->subject->setTitle($value);
 
-        $this->assertEquals($value, $this->subject->getTitle());
+        self::assertSame($value, $this->subject->getTitle());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDescription(): void
     {
         $value = 'A description';
         $this->subject->setDescription($value);
 
-        $this->assertEquals($value, $this->subject->getDescription());
+        self::assertSame($value, $this->subject->getDescription());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setLink(): void
     {
         $value = 'www.typo3.org';
         $this->subject->setLink($value);
 
-        $this->assertEquals($value, $this->subject->getLink());
+        self::assertSame($value, $this->subject->getLink());
     }
 }

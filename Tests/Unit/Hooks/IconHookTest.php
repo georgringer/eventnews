@@ -5,28 +5,23 @@ declare(strict_types=1);
 namespace GeorgRinger\Eventnews\Tests\Unit\Hooks;
 
 use GeorgRinger\Eventnews\Hooks\IconHook;
-use TYPO3\TestingFramework\Core\BaseTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class IconHookTest extends BaseTestCase
+class IconHookTest extends UnitTestCase
 {
-
-    /**
-     * @test
-     * @dataProvider iconForEventNewsIsChangedProvider
-     * @param array $day
-     * @param string|null $returnValue
-     */
-    public function iconForEventNewsIsChanged(array $configuration, $returnValue): void
+    #[Test]
+    #[DataProvider('iconForEventNewsIsChangedProvider')]
+    public function iconForEventNewsIsChanged(array $configuration, ?string $returnValue): void
     {
         $instance = new IconHook();
+
         // @extensionScannerIgnoreLine
-        $this->assertEquals($returnValue, $instance->run($configuration));
+        self::assertSame($returnValue, $instance->run($configuration));
     }
 
-    /**
-     * @return array
-     */
-    public function iconForEventNewsIsChangedProvider(): array
+    public static function iconForEventNewsIsChangedProvider(): array
     {
         return [
             'event news' => [['row' => ['is_event' => 1]], 'ext-news-type-event'],

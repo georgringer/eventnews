@@ -1,79 +1,67 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GeorgRinger\Eventnews\Tests\Unit\Domain\Model;
 
 use GeorgRinger\Eventnews\Domain\Model\Location;
 use GeorgRinger\Eventnews\Domain\Model\News;
 use GeorgRinger\Eventnews\Domain\Model\Organizer;
-use TYPO3\TestingFramework\Core\BaseTestCase;
+use PHPUnit\Framework\Attributes\Test;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class NewsTest extends BaseTestCase
+class NewsTest extends UnitTestCase
 {
-
-    /**
-     * @var News
-     */
-    protected $subject = null;
+    protected News $subject;
 
     protected function setUp(): void
     {
+        parent::setUp();
         $this->subject = new News();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setIsEvent(): void
     {
-        $value = true;
-        $this->subject->setIsEvent($value);
+        $this->subject->setIsEvent(true);
 
-        $this->assertEquals($value, $this->subject->getIsEvent());
+        self::assertTrue($this->subject->getIsEvent());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setFullDay(): void
     {
-        $value = true;
-        $this->subject->setFullDay($value);
+        $this->subject->setFullDay(true);
 
-        $this->assertEquals($value, $this->subject->getFullDay());
+        self::assertTrue($this->subject->getFullDay());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setEventEnd(): void
     {
         $value = new \DateTime('2014-10-10');
         $this->subject->setEventEnd($value);
 
-        $this->assertEquals($value, $this->subject->getEventEnd());
+        self::assertSame($value, $this->subject->getEventEnd());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setOrganizer(): void
     {
         $value = new Organizer();
         $value->setTitle('Organizer 1');
         $this->subject->setOrganizer($value);
 
-        $this->assertEquals($value, $this->subject->getOrganizer());
+        self::assertSame($value, $this->subject->getOrganizer());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setLocation(): void
     {
         $value = new Location();
         $value->setTitle('Location1 1');
         $this->subject->setLocation($value);
 
-        $this->assertEquals($value, $this->subject->getLocation());
+        self::assertSame($value, $this->subject->getLocation());
     }
 }

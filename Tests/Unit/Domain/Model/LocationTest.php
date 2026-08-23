@@ -1,75 +1,65 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GeorgRinger\Eventnews\Tests\Unit\Domain\Model;
 
 use GeorgRinger\Eventnews\Domain\Model\Location;
-use TYPO3\TestingFramework\Core\BaseTestCase;
+use PHPUnit\Framework\Attributes\Test;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-class LocationTest extends BaseTestCase
+class LocationTest extends UnitTestCase
 {
-
-    /**
-     * @var Location
-     */
-    protected $subject = null;
+    protected Location $subject;
 
     protected function setUp(): void
     {
+        parent::setUp();
         $this->subject = new Location();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setTitle(): void
     {
         $value = 'A title';
         $this->subject->setTitle($value);
 
-        $this->assertEquals($value, $this->subject->getTitle());
+        self::assertSame($value, $this->subject->getTitle());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDescription(): void
     {
         $value = 'A description';
         $this->subject->setDescription($value);
 
-        $this->assertEquals($value, $this->subject->getDescription());
+        self::assertSame($value, $this->subject->getDescription());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setLng(): void
     {
         $value = 1.2;
         $this->subject->setLng($value);
 
-        $this->assertEquals($value, $this->subject->getLng());
+        self::assertSame($value, $this->subject->getLng());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setLat(): void
     {
         $value = 2.3;
         $this->subject->setLat($value);
 
-        $this->assertEquals($value, $this->subject->getLat());
+        self::assertSame($value, $this->subject->getLat());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setLink(): void
     {
         $value = 'montagmorgen.at';
         $this->subject->setLink($value);
 
-        $this->assertEquals($value, $this->subject->getLink());
+        self::assertSame($value, $this->subject->getLink());
     }
 }
