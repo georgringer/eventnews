@@ -1,27 +1,27 @@
 {
     "name": "georgringer/eventnews",
-    "type": "typo3-cms-extension",
     "description": "Extend EXT:news with event and calendar functionality",
+    "license": "GPL-2.0-or-later",
+    "type": "typo3-cms-extension",
     "keywords": [
         "TYPO3",
         "extension",
         "event",
         "news"
     ],
-    "homepage": "https://ringer.it",
-	"support": {
-		"source": "https://github.com/georgringer/eventnews",
-		"issues": "https://github.com/georgringer/eventnews/issues",
-		"docs": "https://docs.typo3.org/p/georgringer/eventnews/main/en-us/"
-	},
     "authors": [
         {
             "name": "Georg Ringer",
-            "role": "Developer",
-            "homepage": "https://ringer.it"
+            "homepage": "https://ringer.it",
+            "role": "Developer"
         }
     ],
-    "license": ["GPL-2.0-or-later"],
+    "homepage": "https://extensions.typo3.org/extension/eventnews",
+    "support": {
+        "issues": "https://github.com/georgringer/eventnews/issues",
+        "source": "https://github.com/georgringer/eventnews",
+        "docs": "https://docs.typo3.org/p/georgringer/eventnews/main/en-us/"
+    },
     "require": {
         "php": ">= 8.2 < 8.6",
         "georgringer/news": "^13 || ^14",
@@ -30,6 +30,22 @@
         "typo3/cms-extbase": "^13.4.29 || ^14.3",
         "typo3/cms-fluid": "^13.4.29 || ^14.3",
         "typo3/cms-frontend": "^13.4.29 || ^14.3"
+    },
+    "require-dev": {
+        "a9f/typo3-fractor": "@dev",
+        "friendsofphp/php-cs-fixer": "^3.89.2",
+        "phpstan/phpdoc-parser": "^1.33.0",
+        "phpunit/phpunit": "^10.5.58",
+        "ssch/typo3-rector": "^3.7",
+        "typo3/cms-install": "^13.4.29 || ^14.3",
+        "typo3/coding-standards": "^0.8.0",
+        "typo3/testing-framework": "^8.3.1"
+    },
+    "conflict": {
+        "sebastian/recursion-context": "6.0.0 || 6.0.1 || 6.0.2"
+    },
+    "replace": {
+        "typo3-ter/eventnews": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -42,14 +58,33 @@
         }
     },
     "config": {
-        "vendor-dir": ".Build/vendor",
-        "bin-dir": ".Build/bin"
+        "allow-plugins": {
+            "a9f/fractor-extension-installer": true,
+            "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true,
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        },
+        "bin-dir": ".Build/bin",
+        "lock": false,
+        "sort-packages": true,
+        "vendor-dir": ".Build/vendor"
     },
     "extra": {
         "typo3/cms": {
+            "app-dir": ".Build",
             "extension-key": "eventnews",
-            "cms-package-dir": "{$vendor-dir}/typo3/cms",
             "web-dir": ".Build/Web"
         }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+        ],
+        "cs": "PHP_CS_FIXER_IGNORE_ENV=1 CI=true Build/Scripts/runTests.sh -s cgl -n",
+        "csfix": "PHP_CS_FIXER_IGNORE_ENV=1 CI=true Build/Scripts/runTests.sh -s cgl"
+    },
+    "scripts-descriptions": {
+        "cs": "Check coding standards without changing files (runTests.sh -s cgl -n)",
+        "csfix": "Apply coding standards (runTests.sh -s cgl)"
     }
 }

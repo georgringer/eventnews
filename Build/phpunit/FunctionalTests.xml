@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+    Boilerplate for a functional test suite setup.
+
+    This file is loosely maintained within TYPO3 testing-framework, extensions
+    are encouraged to not use it directly, but to copy it to an own place,
+    for instance Build/FunctionalTests.xml.
+    Note FunctionalTestsBootstrap.php should be copied along the way.
+
+    Functional tests should extend \TYPO3\TestingFramework\Core\Tests\FunctionalTestCase,
+    take a look at this class for further documentation on how to run the suite.
+
+    TYPO3 CMS functional test suite also needs phpunit bootstrap code, the
+    file is located next to this .xml as FunctionalTestsBootstrap.php
+-->
+<!--
+    failOnDeprecation is deliberately false for the functional suite.
+
+    Booting a functional test loads EXT:news, whose own ext_emconf.php and
+    ext_tables.php are deprecated as of TYPO3 v14.3. Those deprecations
+    originate in the dependency and cannot be resolved from this repository,
+    so enforcing them here would keep the suite permanently red.
+
+    eventnews' own remaining v14 deprecations are tracked in AGENTS.md; once
+    they and the EXT:news ones are gone, flip this back to "true".
+
+    failOnNotice, failOnRisky and failOnWarning stay enabled.
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
+         backupGlobals="true"
+         beStrictAboutTestsThatDoNotTestAnything="false"
+         bootstrap="FunctionalTestsBootstrap.php"
+         cacheDirectory=".phpunit.cache"
+         cacheResult="false"
+         colors="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         failOnDeprecation="false"
+         failOnNotice="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         requireCoverageMetadata="false"
+>
+    <testsuites>
+        <testsuite name="Functional tests">
+            <!--
+                This path either needs an adaption in extensions, or an extension's
+                test location path needs to be given to phpunit.
+            -->
+            <directory>../../Tests/Functional/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <ini name="display_errors" value="1"/>
+        <env name="TYPO3_CONTEXT" value="Testing"/>
+    </php>
+</phpunit>

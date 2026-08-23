@@ -1,0 +1,24 @@
+/.Build
+/.cache
+/composer.lock
+/composer.json.orig
+/composer.json.testing
+/.php_cs.cache
+/.php-cs-fixer.cache
+/Documentation-GENERATED-temp
+/typo3temp/
+/var/
+/Tests/Build/.phpunit.result.cache
+.phpunit.cache
+.DS_Store
+.idea/
+.fleet/
+
+# Ignore AI tool-generated files
+/CLAUDE.local.md
+/.claude/settings.local.json
+
+# AGENTS.md and CLAUDE.md are tracked project files. Some contributors ignore
+# these globally, so make sure a personal ignore rule does not hide them here.
+!/AGENTS.md
+!/CLAUDE.md
