@@ -23,8 +23,13 @@
     ],
     "license": ["GPL-2.0-or-later"],
     "require": {
-        "georgringer/news": "^12.2 || ^13 || ^14",
-        "typo3/cms-core": "^12 || ^13 || ^14"
+        "php": ">= 8.2 < 8.6",
+        "georgringer/news": "^13 || ^14",
+        "typo3/cms-backend": "^13.4.29 || ^14.3",
+        "typo3/cms-core": "^13.4.29 || ^14.3",
+        "typo3/cms-extbase": "^13.4.29 || ^14.3",
+        "typo3/cms-fluid": "^13.4.29 || ^14.3",
+        "typo3/cms-frontend": "^13.4.29 || ^14.3"
     },
     "autoload": {
         "psr-4": {

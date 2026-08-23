@@ -34,11 +34,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
 
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News'][] = 'eventnews';
 
-if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 13) {
-    // @extensionScannerIgnoreLine
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:eventnews/Configuration/TSconfig/ContentElementWizard.tsconfig\'');
-}
-
 // override language files of news
 $overrideModuleLable = (bool)\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('eventnews', 'overrideAdministrationModuleLabel');
 if ($overrideModuleLable) {
