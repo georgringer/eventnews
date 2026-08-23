@@ -504,8 +504,12 @@ case ${TEST_SUITE} in
         stashComposerFiles
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-highest-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "
             if [ ${TYPO3_VERSION} -eq 13 ]; then
+              # georgringer/news is deliberately not pinned here. The root
+              # constraint is ^13 || ^14 and news 14 still supports TYPO3 13.4,
+              # so highest resolves to news 14. That is also the only news
+              # major that runs on PHP 8.5, since news 13 declares
+              # php >= 8.1 and < 8.5.
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                georgringer/news:^13 \
                 typo3/cms-core:^13.4 || exit 1
             fi
             if [ ${TYPO3_VERSION} -eq 14 ]; then

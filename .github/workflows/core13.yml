@@ -11,10 +11,15 @@ jobs:
       # rest matrix jobs be executed anyway.
       fail-fast: false
       matrix:
-        # georgringer/news 13.x declares "php >= 8.1 < 8.5", so PHP 8.5 cannot
-        # resolve against TYPO3 13. The v14 matrix does cover 8.5.
-        php: [ '8.2', '8.3', '8.4' ]
+        php: [ '8.2', '8.3', '8.4', '8.5' ]
         composerInstall: [ 'composerInstallLowest', 'composerInstallHighest' ]
+        exclude:
+          # composerInstallLowest pins georgringer/news ^13, which declares
+          # php >= 8.1 and < 8.5 and therefore cannot resolve on PHP 8.5.
+          # composerInstallHighest resolves to news 14 - which still supports
+          # TYPO3 13.4 - and does run on 8.5, so that combination stays in.
+          - php: '8.5'
+            composerInstall: 'composerInstallLowest'
     steps:
       - name: Checkout
         uses: actions/checkout@v5
