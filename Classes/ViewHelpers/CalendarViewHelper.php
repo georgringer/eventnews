@@ -99,7 +99,7 @@ class CalendarViewHelper extends AbstractViewHelper
             $newsBeginDate = $item->getDatetime()->format('Y-m-d');
             $day = date('Y-m-d', $currentDay->getTimestamp());
 
-            if ($item->getEventEnd() == 0) {
+            if ($item->getEventEnd() === null) {
                 if ($newsBeginDate === $day) {
                     $relevantNews[] = $item;
                 }
