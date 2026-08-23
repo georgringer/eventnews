@@ -35,6 +35,36 @@ class TcaTest extends FunctionalTestCase
         ];
     }
 
+    /**
+     * Since TYPO3 13.3 the Core derives these columns from the table's 'ctrl'
+     * capabilities, so the extension does not define them any more. See
+     * Feature-104311-AutoCreatedSystemTCAColumns. The test guards the
+     * assumption: without the auto-creation the fields placed in the 'access'
+     * and 'language' palettes would silently vanish from the form.
+     */
+    #[Test]
+    #[DataProvider('systemColumnProvider')]
+    public function systemColumnsAreCreatedFromCtrl(string $table, string $column): void
+    {
+        self::assertArrayHasKey(
+            $column,
+            $GLOBALS['TCA'][$table]['columns'],
+            sprintf('%s.%s was not auto-created from ctrl', $table, $column)
+        );
+    }
+
+    public static function systemColumnProvider(): array
+    {
+        $cases = [];
+        foreach (['tx_eventnews_domain_model_location', 'tx_eventnews_domain_model_organizer'] as $table) {
+            foreach (['sys_language_uid', 'l10n_parent', 'l10n_diffsource', 'hidden', 'starttime', 'endtime'] as $column) {
+                $cases[$table . '.' . $column] = [$table, $column];
+            }
+        }
+
+        return $cases;
+    }
+
     #[Test]
     #[DataProvider('eventColumnsProvider')]
     public function eventColumnsAreAddedToNews(string $column): void
