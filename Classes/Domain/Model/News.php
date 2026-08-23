@@ -11,10 +11,15 @@ namespace GeorgRinger\Eventnews\Domain\Model;
 
 /**
  * News
+ *
+ * EXT:news merges the body of this class into GeorgRinger\News\Domain\Model\News
+ * through its ClassCacheManager. In that generated file every unqualified class
+ * name resolves against the GeorgRinger\News\Domain\Model namespace, so all
+ * references here must stay fully qualified — Rector is configured to skip this
+ * file for exactly that reason.
  */
 class News extends \GeorgRinger\News\Domain\Model\News
 {
-
     /**
      * isEvent
      */

@@ -10,10 +10,8 @@ namespace GeorgRinger\Eventnews\Domain\Model\Dto;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 class SearchDemand
 {
-
     /** @var array */
     protected $locations;
 

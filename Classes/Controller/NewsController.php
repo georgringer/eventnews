@@ -7,12 +7,12 @@ use GeorgRinger\Eventnews\Domain\Model\Dto\SearchDemand;
 use GeorgRinger\Eventnews\Domain\Repository\LocationRepository;
 use GeorgRinger\Eventnews\Domain\Repository\OrganizerRepository;
 use GeorgRinger\Eventnews\Event\NewsMonthActionEvent;
-use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Utility\Cache;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 class NewsController extends \GeorgRinger\News\Controller\NewsController
 {
-    const SIGNAL_NEWS_MONTH_ACTION = 'monthAction';
+    public const SIGNAL_NEWS_MONTH_ACTION = 'monthAction';
 
     protected LocationRepository $locationRepository;
     protected OrganizerRepository $organizerRepository;
@@ -32,13 +32,12 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      *
      * @param SearchDemand $search
      * @param array $overwriteDemand
-     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("search")
      */
+    #[IgnoreValidation(['argumentName' => 'search'])]
     public function monthAction(
         ?SearchDemand $search = null,
         ?array $overwriteDemand = null
-    ): ResponseInterface
-    {
+    ): ResponseInterface {
         $demand = $this->getDemand($search, $overwriteDemand);
         $newsRecordsWithDaySupport = $this->newsRepository->findDemanded($demand);
         $demand->setRespectDay(false);
@@ -89,11 +88,12 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     protected function getDemand(
         ?SearchDemand $search = null,
         ?array $overwriteDemand = null
-    ): Demand
-    {
+    ): Demand {
         /** @var Demand $demand */
-        $demand = $this->createDemandObjectFromSettings($this->settings,
-            Demand::class);
+        $demand = $this->createDemandObjectFromSettings(
+            $this->settings,
+            Demand::class
+        );
         if (is_array($overwriteDemand) && !empty($overwriteDemand)) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }

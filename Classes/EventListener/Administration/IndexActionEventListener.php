@@ -34,17 +34,17 @@ class IndexActionEventListener
             $standaloneView->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:eventnews/Resources/Private/Templates/Administration/AdditionalFilter.html'));
             $standaloneView->assignMultiple($assignedValues);
             return $standaloneView->render();
-        } else {
-            $viewFactory = GeneralUtility::makeInstance(ViewFactoryInterface::class);
-            $viewFactoryData = new ViewFactoryData(
-                templateRootPaths: ['EXT:eventnews/Resources/Private/Templates'],
-                partialRootPaths: ['EXT:eventnews/Resources/Private/Partials'],
-                layoutRootPaths: ['EXT:eventnews/Resources/Private/Layouts'],
-                request: $GLOBALS['TYPO3_REQUEST'],
-            );
-            $view = $viewFactory->create($viewFactoryData);
-            $view->assignMultiple($assignedValues);
-            return $view->render('Administration/AdditionalFilter');
         }
+        $viewFactory = GeneralUtility::makeInstance(ViewFactoryInterface::class);
+        $viewFactoryData = new ViewFactoryData(
+            templateRootPaths: ['EXT:eventnews/Resources/Private/Templates'],
+            partialRootPaths: ['EXT:eventnews/Resources/Private/Partials'],
+            layoutRootPaths: ['EXT:eventnews/Resources/Private/Layouts'],
+            request: $GLOBALS['TYPO3_REQUEST'],
+        );
+        $view = $viewFactory->create($viewFactoryData);
+        $view->assignMultiple($assignedValues);
+        return $view->render('Administration/AdditionalFilter');
+
     }
 }

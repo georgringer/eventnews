@@ -1,8 +1,12 @@
 <?php
 
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use GeorgRinger\News\Hooks\PluginPreviewRenderer;
+
 $pluginName = 'news_month';
 $pluginNameForLabel = $pluginName === 'pi1' ? 'news_list' : $pluginName;
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+ExtensionUtility::registerPlugin(
     'eventnews',
     'NewsMonth',
     'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:plugin.news_month.title',
@@ -13,14 +17,14 @@ $pluginNameForLabel = $pluginName === 'pi1' ? 'news_list' : $pluginName;
 
 $contentTypeName = 'eventnews_newsmonth';
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+ExtensionManagementUtility::addPiFlexFormValue(
     '*',
     'FILE:EXT:news/Configuration/FlexForms/flexform_news_list.xml',
     'eventnews_newsmonth'
 );
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentTypeName] = 'ext-news-plugin-' . str_replace('_', '-', $pluginNameForLabel);
 
-$GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['previewRenderer'] = \GeorgRinger\News\Hooks\PluginPreviewRenderer::class;
+$GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['previewRenderer'] = PluginPreviewRenderer::class;
 $GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['showitem'] = '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,

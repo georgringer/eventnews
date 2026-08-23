@@ -12,6 +12,4 @@ namespace GeorgRinger\Eventnews\Domain\Repository;
 /**
  * Class OrganizerRepository
  */
-class OrganizerRepository extends AbstractRepository
-{
-}
+class OrganizerRepository extends AbstractRepository {}

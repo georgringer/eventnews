@@ -1,5 +1,8 @@
 <?php
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Information\Typo3Version;
+
 $tx_eventnews_domain_model_location = [
     'ctrl' => [
         'title' => 'LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tx_eventnews_domain_model_location',
@@ -77,9 +80,6 @@ $tx_eventnews_domain_model_location = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
-                    ['label' => '', 'value' => ''],
-                ],
             ],
         ],
         'starttime' => [
@@ -151,7 +151,7 @@ $tx_eventnews_domain_model_location = [
     ],
 ];
 
-$versionInformation = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(TYPO3\CMS\Core\Information\Typo3Version::class);
+$versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
 if ($versionInformation->getMajorVersion() >= 11) {
     unset($tx_eventnews_domain_model_location['interface']);
     $tx_eventnews_domain_model_location['columns']['sys_language_uid']['config'] = [

@@ -8,16 +8,15 @@ namespace GeorgRinger\Eventnews\EventListener;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use GeorgRinger\Eventnews\Domain\Model\Dto\Demand;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Event\ModifyDemandRepositoryEvent;
+use GeorgRinger\News\Utility\ConstraintHelper;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 class ModifyDemandRepositoryEventListener
 {
-
     public function __invoke(ModifyDemandRepositoryEvent $event): void
     {
         if (!($event->getDemand() instanceof Demand)) {
@@ -43,8 +42,7 @@ class ModifyDemandRepositoryEventListener
         DemandInterface $demand,
         QueryInterface $query,
         array &$constraints
-    ): void
-    {
+    ): void {
         $eventRestriction = $demand->getEventRestriction();
 
         /** @var QueryInterface $query */
@@ -105,7 +103,7 @@ class ModifyDemandRepositoryEventListener
 
             // Time restriction to include events with startdate in the past AND enddate in the future!
             if ($demand->getTimeRestriction()) {
-                $timeLimit = \GeorgRinger\News\Utility\ConstraintHelper::getTimeRestrictionLow($demand->getTimeRestriction());
+                $timeLimit = ConstraintHelper::getTimeRestrictionLow($demand->getTimeRestriction());
                 $constraints['timeRestrictionGreater'] = $query->logicalOr(
                     $query->greaterThanOrEqual('eventEnd', $timeLimit),
                     $query->greaterThanOrEqual('datetime', $timeLimit)

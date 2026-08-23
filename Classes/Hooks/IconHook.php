@@ -14,7 +14,6 @@ namespace GeorgRinger\Eventnews\Hooks;
  */
 class IconHook
 {
-
     /**
      * @param array $params
      * @return string|null

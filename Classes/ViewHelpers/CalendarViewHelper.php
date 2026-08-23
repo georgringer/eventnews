@@ -3,11 +3,11 @@
 namespace GeorgRinger\Eventnews\ViewHelpers;
 
 use GeorgRinger\Eventnews\Domain\Model\Dto\Demand;
+use GeorgRinger\Eventnews\Domain\Model\News;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class CalendarViewHelper extends AbstractViewHelper
 {
-
     /**
      * @var bool
      */
@@ -95,7 +95,7 @@ class CalendarViewHelper extends AbstractViewHelper
     {
         $relevantNews = [];
         foreach ($newsList as $item) {
-            /** @var \GeorgRinger\Eventnews\Domain\Model\News $item */
+            /** @var News $item */
             $newsBeginDate = $item->getDatetime()->format('Y-m-d');
             $day = date('Y-m-d', $currentDay->getTimestamp());
 

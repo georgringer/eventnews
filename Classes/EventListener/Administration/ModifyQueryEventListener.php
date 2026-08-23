@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Database\Connection;
  */
 class ModifyQueryEventListener
 {
-
     public function __invoke(ModifyQueryEvent $event): void
     {
         $eventRestriction = (int)($event->getQueryParams()['eventNewsRestriction'] ?? 0);

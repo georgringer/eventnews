@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AfterFlexFormDataStructureParsedEventListener
 {
-
     public function __invoke(AfterFlexFormDataStructureParsedEvent $event): void
     {
         $dataStructure = $event->getDataStructure();
@@ -37,8 +36,8 @@ class AfterFlexFormDataStructureParsedEventListener
     {
         $validKeys = ['*,eventnews_', '*,news_'];
         $active = false;
-        foreach($validKeys as $prefix) {
-            if (substr($dataStructureKey, 0, strlen($prefix)) === $prefix) {
+        foreach ($validKeys as $prefix) {
+            if (str_starts_with($dataStructureKey, $prefix)) {
                 $active = true;
                 break;
             }

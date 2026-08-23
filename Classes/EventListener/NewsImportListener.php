@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\Eventnews\EventListener;
@@ -9,7 +10,7 @@ namespace GeorgRinger\Eventnews\EventListener;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
+use GeorgRinger\Eventnews\Domain\Model\News;
 use GeorgRinger\News\Event\NewsImportPostHydrateEvent;
 
 /**
@@ -17,12 +18,11 @@ use GeorgRinger\News\Event\NewsImportPostHydrateEvent;
  */
 class NewsImportListener
 {
-
     public function __invoke(NewsImportPostHydrateEvent $event)
     {
         $importData = $event->getImportItem();
 
-        /** @var \GeorgRinger\Eventnews\Domain\Model\News $news */
+        /** @var News $news */
         if (is_array($importData['_dynamicData'])) {
             if (isset($importData['_dynamicData']['location'])) {
                 $event->getNews()->setLocationSimple(trim($importData['_dynamicData']['location']));

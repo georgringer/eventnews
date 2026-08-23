@@ -27,7 +27,6 @@ class FormEngineHook
      * @param string $field
      * @param array $row
      * @param string $out
-     * @return void
      */
     public function getSingleField_postProcess($table, $field, $row, &$out)
     {

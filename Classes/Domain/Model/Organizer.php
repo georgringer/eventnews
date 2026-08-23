@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace GeorgRinger\Eventnews\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 /**
  * Organizer
  */
-class Organizer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Organizer extends AbstractEntity
 {
-
     /**
      * title
      *
@@ -52,7 +52,6 @@ class Organizer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the title
      *
      * @param string $title
-     * @return void
      */
     public function setTitle($title)
     {
@@ -73,7 +72,6 @@ class Organizer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the description
      *
      * @param string $description
-     * @return void
      */
     public function setDescription($description)
     {

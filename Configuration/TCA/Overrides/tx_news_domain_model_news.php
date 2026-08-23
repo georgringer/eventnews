@@ -1,5 +1,8 @@
 <?php
 
+use GeorgRinger\Eventnews\Hooks\IconHook;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 $fields = [
     'is_event' => [
         'exclude' => true,
@@ -89,8 +92,8 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['palette_eventfields'] 
     'canNotCollapse' => true,
     'showitem' => 'organizer,organizer_simple, --linebreak--,location,location_simple'
 ];
-$GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['typeicon_classes']['userFunc'] = \GeorgRinger\Eventnews\Hooks\IconHook::class . '->run';
+$GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['typeicon_classes']['userFunc'] = IconHook::class . '->run';
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $fields);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'is_event,--palette--;;palette_event', '', 'after:datetime');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', ',--div--;LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tab.eventnews,--palette--;;palette_eventfields', '', 'before:--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media');
+ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $fields);
+ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'is_event,--palette--;;palette_event', '', 'after:datetime');
+ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', ',--div--;LLL:EXT:eventnews/Resources/Private/Language/locallang_db.xlf:tab.eventnews,--palette--;;palette_eventfields', '', 'before:--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media');

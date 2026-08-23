@@ -1,3 +1,5 @@
 <?php
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('eventnews', 'Configuration/TypoScript', 'Eventnews');
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+ExtensionManagementUtility::addStaticFile('eventnews', 'Configuration/TypoScript', 'Eventnews');

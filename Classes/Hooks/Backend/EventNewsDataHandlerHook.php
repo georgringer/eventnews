@@ -8,12 +8,11 @@ namespace GeorgRinger\Eventnews\Hooks\Backend;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\DataHandling\DataHandler;
 
 class EventNewsDataHandlerHook
 {
-
     /**
      * Save a new news record as event if stated by tsconfig
      *
@@ -21,15 +20,14 @@ class EventNewsDataHandlerHook
      * @param string $table table name
      * @param int $recordUid id of the record
      * @param array $fields fieldArray
-     * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject parent Object
-     * @return void
+     * @param DataHandler $parentObject parent Object
      */
     public function processDatamap_postProcessFieldArray(
         $status,
         $table,
         $recordUid,
         array &$fields,
-        \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject
+        DataHandler $parentObject
     ) {
         if ($status === 'new' && $table === 'tx_news_domain_model_news') {
             $tsconfig = BackendUtility::getPagesTSconfig($fields['pid']);

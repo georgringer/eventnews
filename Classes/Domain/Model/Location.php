@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace GeorgRinger\Eventnews\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 /**
  * Location
  */
-class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Location extends AbstractEntity
 {
-
     /**
      * title
      *
@@ -66,7 +66,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the title
      *
      * @param string $title
-     * @return void
      */
     public function setTitle($title)
     {
@@ -87,7 +86,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the description
      *
      * @param string $description
-     * @return void
      */
     public function setDescription($description)
     {
@@ -108,7 +106,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the lat
      *
      * @param float $lat
-     * @return void
      */
     public function setLat($lat)
     {
@@ -129,7 +126,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the lng
      *
      * @param float $lng
-     * @return void
      */
     public function setLng($lng)
     {
@@ -150,7 +146,6 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the link
      *
      * @param string $link
-     * @return void
      */
     public function setLink($link)
     {
