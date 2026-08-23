@@ -31,7 +31,7 @@ class IndexActionEventListener
     {
         if ((new Typo3Version())->getMajorVersion() < 14) {
             $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
-            $standaloneView->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:eventnews/Resources/Private/Templates/Administration/AdditionalFilter.html'));
+            $standaloneView->getRenderingContext()->getTemplatePaths()->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:eventnews/Resources/Private/Templates/Administration/AdditionalFilter.html'));
             $standaloneView->assignMultiple($assignedValues);
             return $standaloneView->render();
         }
