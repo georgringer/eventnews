@@ -11,7 +11,9 @@ jobs:
       # rest matrix jobs be executed anyway.
       fail-fast: false
       matrix:
-        php: [ '8.2', '8.3', '8.4', '8.5' ]
+        # georgringer/news 13.x declares "php >= 8.1 < 8.5", so PHP 8.5 cannot
+        # resolve against TYPO3 13. The v14 matrix does cover 8.5.
+        php: [ '8.2', '8.3', '8.4' ]
         composerInstall: [ 'composerInstallLowest', 'composerInstallHighest' ]
     steps:
       - name: Checkout
