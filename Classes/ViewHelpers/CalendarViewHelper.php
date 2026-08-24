@@ -87,6 +87,14 @@ class CalendarViewHelper extends AbstractViewHelper
     }
 
     /**
+     * Compare calendar days as Y-m-d strings rather than as DateTime objects.
+     *
+     * Extbase may hand out DateTime objects carrying a fixed UTC offset instead
+     * of a named time zone. setTime() on such an object cannot re-evaluate the
+     * daylight saving rule, so on the day the clocks go back it produces
+     * midnight at the wrong offset and the comparison is off by an hour. The
+     * formatted date is correct either way.
+     *
      * @param object $newsList
      * @param \DateTime $currentDay
      * @return array
@@ -94,25 +102,18 @@ class CalendarViewHelper extends AbstractViewHelper
     protected function getNewsForDay($newsList, $currentDay)
     {
         $relevantNews = [];
+        $day = $currentDay->format('Y-m-d');
+
         foreach ($newsList as $item) {
             /** @var News $item */
             $newsBeginDate = $item->getDatetime()->format('Y-m-d');
-            $day = date('Y-m-d', $currentDay->getTimestamp());
 
             if ($item->getEventEnd() === null) {
                 if ($newsBeginDate === $day) {
                     $relevantNews[] = $item;
                 }
-            } else {
-                $newsEndDate = clone $item->getEventEnd();
-                $newsEndDate->setTime(23, 59, 59);
-                $newsBeginDate = clone $item->getDatetime();
-                $newsBeginDate->setTime(0, 0);
-                $currentDay->setTime(0, 0);
-
-                if ($newsBeginDate <= $currentDay && $newsEndDate >= $currentDay) {
-                    $relevantNews[] = $item;
-                }
+            } elseif ($newsBeginDate <= $day && $item->getEventEnd()->format('Y-m-d') >= $day) {
+                $relevantNews[] = $item;
             }
         }
 
