@@ -1,0 +1,5 @@
+"tx_news_domain_model_news",,,,,,,
+,"uid","pid","title","datetime","is_event","event_end","hidden"
+,10,1,"January to October",1767225600,1,1793491199,0
+,11,1,"Plain news in May",1778846400,0,0,0
+,12,1,"Plain news in January",1768478400,0,0,0
