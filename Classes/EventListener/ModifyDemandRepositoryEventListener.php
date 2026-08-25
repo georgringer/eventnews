@@ -17,6 +17,11 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 class ModifyDemandRepositoryEventListener
 {
+    /**
+     * Highest value a signed 32 bit integer column can hold, 2038-01-19.
+     */
+    protected const LATEST_TIMESTAMP = 2147483647;
+
     public function __invoke(ModifyDemandRepositoryEvent $event): void
     {
         if (!($event->getDemand() instanceof Demand)) {
@@ -103,20 +108,26 @@ class ModifyDemandRepositoryEventListener
 
         // Time start
         $convertedDateStart = strtotime($demand->getSearchDateFrom() ?? '');
-        if (!$convertedDateStart) {
-            $convertedDateStart = PHP_INT_MIN;
-        }
         // Time end
         $convertedDateEnd = strtotime($demand->getSearchDateTo() ?? '');
         if ($convertedDateEnd) {
             // The date names a whole day, so the range runs to its end,
             // just like the month and year constraint above.
             $convertedDateEnd += 86399;
-        } else {
-            $convertedDateEnd = PHP_INT_MAX;
         }
-        $dateConstraints = $this->getDateConstraint($query, 'datetime', $convertedDateStart, $convertedDateEnd);
-        $constraints['datetimeSearch'] = $query->logicalOr(...$dateConstraints);
+        // An open end is filled with the bounds of the column, not with the
+        // bounds of a PHP integer: 'datetime' and 'event_end' are int(11), and
+        // PostgreSQL rejects a 64 bit value against them instead of quietly
+        // taking it, as MySQL and SQLite do.
+        if ($convertedDateStart || $convertedDateEnd) {
+            $dateConstraints = $this->getDateConstraint(
+                $query,
+                'datetime',
+                $convertedDateStart ?: 0,
+                $convertedDateEnd ?: self::LATEST_TIMESTAMP
+            );
+            $constraints['datetimeSearch'] = $query->logicalOr(...$dateConstraints);
+        }
 
         // Time restriction to include events with startdate in the past AND enddate in the future!
         if ($demand->getTimeRestriction()) {
