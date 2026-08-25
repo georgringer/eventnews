@@ -48,69 +48,83 @@ class ModifyDemandRepositoryEventListener
         /** @var QueryInterface $query */
         if ($eventRestriction === Demand::EVENT_RESTRICTION_NO_EVENTS) {
             $constraints[] = $query->equals('isEvent', 0);
-        } elseif ($eventRestriction === Demand::EVENT_RESTRICTION_ONLY_EVENTS) {
+            return;
+        }
+
+        $onlyEvents = $eventRestriction === Demand::EVENT_RESTRICTION_ONLY_EVENTS;
+
+        if ($onlyEvents) {
             // reset datetime constraint
             unset($constraints['datetime']);
-            $constraints[] = $query->equals('isEvent', 1);
+        }
 
-            if ($demand->getYear()) {
-                $dateField = $demand->getDateField();
-                if (!$dateField) {
-                    $dateField = 'datetime';
-                }
+        // Events can show up in the result, so the month or year range has to
+        // be paired with the event end. EXT:news matches on the start date
+        // alone, which lists an event running from January to October in
+        // January only, see #198. Records with no end date still match through
+        // the plain range, so plain news is unaffected.
+        if ($demand->getYear()) {
+            $dateField = $demand->getDateField();
+            if (!$dateField) {
+                $dateField = 'datetime';
+            }
 
-                if ($demand->getMonth() > 0) {
-                    if ($demand->getRespectDay() && $demand->getDay() > 0) {
-                        $begin = mktime(0, 0, 0, $demand->getMonth(), $demand->getDay(), $demand->getYear());
-                        $end = mktime(23, 59, 59, $demand->getMonth(), $demand->getDay(), $demand->getYear());
-                    } else {
-                        $begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
-                        $end = mktime(23, 59, 59, ($demand->getMonth() + 1), 0, $demand->getYear());
-                    }
+            if ($demand->getMonth() > 0) {
+                if ($demand->getRespectDay() && $demand->getDay() > 0) {
+                    $begin = mktime(0, 0, 0, $demand->getMonth(), $demand->getDay(), $demand->getYear());
+                    $end = mktime(23, 59, 59, $demand->getMonth(), $demand->getDay(), $demand->getYear());
                 } else {
-                    $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
-                    $end = mktime(23, 59, 59, 12, 31, $demand->getYear());
+                    $begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
+                    $end = mktime(23, 59, 59, ($demand->getMonth() + 1), 0, $demand->getYear());
                 }
-
-                $dateConstraints = $this->getDateConstraint($query, $dateField, $begin, $end);
-                $constraints['datetime'] = $query->logicalOr(...$dateConstraints);
-            }
-
-            $organizers = $demand->getOrganizers();
-            if (!empty($organizers)) {
-                $constraints[] = $query->in('organizer', $organizers);
-            }
-
-            $locations = $demand->getLocations();
-            if (!empty($locations)) {
-                $constraints[] = $query->in('location', $locations);
-            }
-
-            // Time start
-            $convertedDateStart = strtotime($demand->getSearchDateFrom() ?? '');
-            if (!$convertedDateStart) {
-                $convertedDateStart = PHP_INT_MIN;
-            }
-            // Time end
-            $convertedDateEnd = strtotime($demand->getSearchDateTo() ?? '');
-            if ($convertedDateEnd) {
-                // The date names a whole day, so the range runs to its end,
-                // just like the month and year constraint above.
-                $convertedDateEnd += 86399;
             } else {
-                $convertedDateEnd = PHP_INT_MAX;
+                $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
+                $end = mktime(23, 59, 59, 12, 31, $demand->getYear());
             }
-            $dateConstraints = $this->getDateConstraint($query, 'datetime', $convertedDateStart, $convertedDateEnd);
-            $constraints['datetimeSearch'] = $query->logicalOr(...$dateConstraints);
 
-            // Time restriction to include events with startdate in the past AND enddate in the future!
-            if ($demand->getTimeRestriction()) {
-                $timeLimit = ConstraintHelper::getTimeRestrictionLow($demand->getTimeRestriction());
-                $constraints['timeRestrictionGreater'] = $query->logicalOr(
-                    $query->greaterThanOrEqual('eventEnd', $timeLimit),
-                    $query->greaterThanOrEqual('datetime', $timeLimit)
-                );
-            }
+            $dateConstraints = $this->getDateConstraint($query, $dateField, $begin, $end);
+            $constraints['datetime'] = $query->logicalOr(...$dateConstraints);
+        }
+
+        if (!$onlyEvents) {
+            return;
+        }
+
+        $constraints[] = $query->equals('isEvent', 1);
+        $organizers = $demand->getOrganizers();
+        if (!empty($organizers)) {
+            $constraints[] = $query->in('organizer', $organizers);
+        }
+
+        $locations = $demand->getLocations();
+        if (!empty($locations)) {
+            $constraints[] = $query->in('location', $locations);
+        }
+
+        // Time start
+        $convertedDateStart = strtotime($demand->getSearchDateFrom() ?? '');
+        if (!$convertedDateStart) {
+            $convertedDateStart = PHP_INT_MIN;
+        }
+        // Time end
+        $convertedDateEnd = strtotime($demand->getSearchDateTo() ?? '');
+        if ($convertedDateEnd) {
+            // The date names a whole day, so the range runs to its end,
+            // just like the month and year constraint above.
+            $convertedDateEnd += 86399;
+        } else {
+            $convertedDateEnd = PHP_INT_MAX;
+        }
+        $dateConstraints = $this->getDateConstraint($query, 'datetime', $convertedDateStart, $convertedDateEnd);
+        $constraints['datetimeSearch'] = $query->logicalOr(...$dateConstraints);
+
+        // Time restriction to include events with startdate in the past AND enddate in the future!
+        if ($demand->getTimeRestriction()) {
+            $timeLimit = ConstraintHelper::getTimeRestrictionLow($demand->getTimeRestriction());
+            $constraints['timeRestrictionGreater'] = $query->logicalOr(
+                $query->greaterThanOrEqual('eventEnd', $timeLimit),
+                $query->greaterThanOrEqual('datetime', $timeLimit)
+            );
         }
     }
 

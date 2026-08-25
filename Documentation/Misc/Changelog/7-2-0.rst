@@ -1,0 +1,61 @@
+.. include:: /Includes.rst.txt
+
+7.2.0 - upcoming
+================
+
+Regular release, please read the following notes carefully.
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+Events spanning several months are listed in every one of them
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A plugin whose :guilabel:`Event Restriction` is set to
+:guilabel:`No constraint` shows events next to plain news records. Its month
+and year range used to come straight from :t3ext:`news`, which matches on the
+start date alone:
+
+.. code-block:: sql
+
+   datetime >= <first day of the month> AND datetime <= <last day of the month>
+
+An event running from January to October therefore appeared in January and
+nowhere else, because that is where it starts. Only :guilabel:`Only events`
+used the range of this extension, which pairs the start date with
+:sql:`event_end` and matches every month an event covers.
+
+The two behave the same now, so an event is listed in every month it runs
+through. In a calendar that is the point of the change, the event finally
+shows up on the days it actually runs. In a plain list the same event now
+appears in several months instead of one, which can push other records onto a
+later page when the list is paginated or limited by
+:typoscript:`settings.limit`.
+
+Nothing changes for :guilabel:`Only events`, which already worked this way, or
+for :guilabel:`No events`, which never looks at :sql:`event_end`. To keep the
+old result for a single plugin, set it to :guilabel:`No events` and put the
+events into a second plugin.
+
+See `issue #198 <https://github.com/georgringer/eventnews/issues/198>`__.
+
+Breaking changes
+----------------
+
+No breaking changes known
+
+Features
+--------
+
+No new features known
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    filled in when the release is tagged
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

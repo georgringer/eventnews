@@ -42,6 +42,7 @@ Additional calendar view for the TYPO3 extension :t3ext:`news`.
     Introduction/Index
     UsersManual/Index
     AdministratorManual/Index
+    Misc/Changelog/Index
     NeedSupport/Index
     Thanks/Index
 
