@@ -12,6 +12,14 @@ Regular release, please read the following notes carefully.
 Important changes
 -----------------
 
+The "hidden" checkbox looks different
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Location and organizer records no longer spell out the system columns the
+Core creates from the table's :php:`ctrl` capabilities. One of them is
+`hidden`, which now uses the Core default: an inverted toggle labelled
+:guilabel:`Enable` instead of the previous :guilabel:`Hide`. It is the same
+widget every other Core table shows, and it stores the same value.
+
 Events spanning several months are listed in every one of them
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 A plugin whose :guilabel:`Event Restriction` is set to
@@ -50,12 +58,87 @@ No breaking changes known
 Features
 --------
 
-No new features known
+Address fields on location records
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A location record now carries a full address: street, ZIP, city, state,
+municipality, country, phone and email, grouped in an :guilabel:`Address` and
+a :guilabel:`Contact` palette. The country is a real country selection - TCA
+type `country` on TYPO3 14, the same list built from the Country API on 13 -
+and stores the ISO 3166-1 alpha-2 code.
+
+None of the fields are rendered by the shipped templates. They are meant for
+your own templates and reachable through the matching getters on
+:php:`GeorgRinger\Eventnews\Domain\Model\Location`, so
+`{newsItem.location.city}` works right away.
+
+See `issue #223 <https://github.com/georgringer/eventnews/issues/223>`__.
+
+Support for TYPO3 14
+~~~~~~~~~~~~~~~~~~~~
+One branch now serves TYPO3 13.4 LTS and 14. The month view runs on both:
+:php:`TypoScriptFrontendController` and the `frontend.controller` request
+attribute were removed in v14, so :php:`NewsController::monthAction()` reads
+the page id from the `frontend.page.information` attribute instead. The
+ViewHelpers and the administration module were adjusted the same way.
+
+Broken links in locations and organizers are reported
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The :guilabel:`Link` field of a location and of an organizer is now checked
+by linkvalidator. Both fields always used TCA type `link` with a
+:php:`typolink` soft reference, which is the prerequisite, but linkvalidator
+only looks at fields listed in :typoscript:`mod.linkvalidator.searchFields` -
+and that list was never provided, so broken links went unreported.
+
+The extension ships the registration in `Configuration/page.tsconfig`, which
+TYPO3 picks up automatically for every active package:
+
+.. code-block:: typoscript
+
+   mod.linkvalidator.searchFields {
+       tx_eventnews_domain_model_location = link
+       tx_eventnews_domain_model_organizer = link
+   }
+
+Existing broken links show up on the next run of the linkvalidator report or
+its scheduler task. To leave a table out, unset it in your own page TSconfig.
+
+See `issue #214 <https://github.com/georgringer/eventnews/issues/214>`__.
+
+Test suite and CI
+~~~~~~~~~~~~~~~~~
+The extension now ships a container based test runner,
+`Build/Scripts/runTests.sh`, together with unit and functional test suites and
+GitHub Actions workflows covering TYPO3 13 and 14. Relevant if you contribute;
+`runTests.sh -h` lists what it can do.
 
 All Changes
 -----------
 This is a list of all changes in this release: ::
 
-    filled in when the release is tagged
+    2026-08-25 [BUGFIX] Find events that run across the searched date range (Commit f091c57 by Georg Ringer)
+    2026-08-25 [FEATURE] Add address fields to location records (Commit 74c87a8 by Georg Ringer)
+    2026-08-25 [BUGFIX] List an event in every month it runs through (Commit b9d2481 by Georg Ringer)
+    2026-08-24 [BUGFIX] Show events on the day the clocks go back (Commit 5081528 by Georg Ringer)
+    2026-08-23 [TASK] Drop system TCA columns that the Core creates itself (Commit 7f7a981 by Georg Ringer)
+    2026-08-23 [FEATURE] Register the link fields with linkvalidator (Commit fd55e31 by Georg Ringer)
+    2026-08-23 [BUGFIX] Do not mark days of the next month as belonging to this one (Commit b6857fb by Georg Ringer)
+    2026-06-09 resolves #221 inability to create new records (Commit cbddb6c by Morten Haggren)
+    2026-08-23 [TASK] Cover TYPO3 13 with news 14 on PHP 8.5 (Commit cd50410 by Georg Ringer)
+    2026-08-23 [TASK] Use the template paths API in the v13 administration view (Commit f5b1a48 by Georg Ringer)
+    2026-08-23 [TASK] Drop PHP 8.5 from the TYPO3 13 CI matrix (Commit f192b64 by Georg Ringer)
+    2026-08-23 [DOC] Add repository guidelines for coding agents (Commit 873602d by Georg Ringer)
+    2026-08-23 [TASK] Apply coding standards and automated migrations (Commit 7d3e78b by Georg Ringer)
+    2026-08-23 [BUGFIX] Do not compare the event end date against an integer (Commit 51d9f01 by Georg Ringer)
+    2026-08-23 [TASK] Add functional smoke tests for TCA and the DI container (Commit e0126ae by Georg Ringer)
+    2026-08-23 [TASK] Modernise the unit test suite (Commit 717097c by Georg Ringer)
+    2026-08-23 [TASK] Add a container based test runner and CI workflows (Commit 56bf597 by Georg Ringer)
+    2026-08-23 [TASK] Raise requirements to TYPO3 13.4 LTS and 14.3 (Commit 8d49d0e by Georg Ringer)
+    2026-07-23 [TASK] Use proper type declarations (Commit 300d89e by Philipp Kitzberger)
+    2026-07-29 Fix monthAction() on TYPO3 14 (TSFE removal) (Commit d771acc by Frank Zigan)
+    2026-04-30 Update: Refactor ViewHelpers and improve compatibility with TYPO3 v14 (Commit 9b694e5 by Alexander Grein)
+    2026-04-30 Update TYPO3 and news version constraints (Commit 680ddee by Alexander Grein)
+    2026-04-30 Update dependencies to include TYPO3 version 14 (Commit 82ebadb by Alexander Grein)
+    2026-04-09 [TASK] Update ext-eventnews-folder-tree.svg (Commit da2759f by Volker)
+
 
 This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
