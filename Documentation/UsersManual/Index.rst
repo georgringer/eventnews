@@ -7,11 +7,9 @@ Users manual
 
 Using this extension is very simple if you are used to the extension *news* already!.
 
-.. only:: html
-
-    .. contents::
-        :local:
-        :depth: 1
+.. contents::
+    :local:
+    :depth: 1
 
 Additional fields
 =================
