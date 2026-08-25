@@ -92,13 +92,13 @@
 							<ul class="pager">
 								<li class="previous">
 									<f:link.action controller="News" action="month" arguments="{overwriteDemand:{month:previousMonthData.month,year:previousMonthData.year}}" pageUid="{currentPageId}" rel="nofollow">
-										&larr; {f:format.date(date:previousMonthData.date,format:'%B %Y')}
+										&larr; {f:format.date(date:previousMonthData.date,pattern:'MMMM y')}
 									</f:link.action>
 								</li>
-								<li>{f:format.date(date:currentMonthData.date,format:'%B %Y')}</li>
+								<li>{f:format.date(date:currentMonthData.date,pattern:'MMMM y')}</li>
 								<li class="next">
 									<f:link.action controller="News" action="month" arguments="{overwriteDemand:{month:nextMonthData.month,year:nextMonthData.year}}" pageUid="{currentPageId}" rel="nofollow">
-										{f:format.date(date:nextMonthData.date,format:'%B %Y')} &rarr;
+										{f:format.date(date:nextMonthData.date,pattern:'MMMM y')} &rarr;
 									</f:link.action>
 								</li>
 							</ul>
@@ -107,7 +107,7 @@
 					<tr class="days">
 						<f:for each="{weeks.0}" as="day">
 							<th>
-								{f:format.date(date: day.ts, format: '%a')}
+								{f:format.date(date: day.ts, pattern: 'EEE')}
 							</th>
 						</f:for>
 					</tr>
@@ -148,7 +148,7 @@
 	<div class="col-md-12" style="border: 1px solid #ccc;">
 		<strong>
 			<n:link newsItem="{n}" settings="{settings}">{n.title}</n:link>
-			| {f:format.date(date:n.datetime,format:'%d.%m')}</strong>
+			| {f:format.date(date:n.datetime,format:'d.m')}</strong>
 		<ul>
 			<f:if condition="{n.organizer}">
 				<li><strong>
@@ -168,7 +168,7 @@
 				<li>
 					<strong>
 						<f:translate key="event_end" extensionName="eventnews" />
-					</strong>: {f:format.date(date:n.eventEnd,format:'%d.%m.%Y')}
+					</strong>: {f:format.date(date:n.eventEnd,format:'d.m.Y')}
 				</li>
 			</f:if>
 		</ul>
