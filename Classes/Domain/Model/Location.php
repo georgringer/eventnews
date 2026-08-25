@@ -32,6 +32,62 @@ class Location extends AbstractEntity
     protected $description = '';
 
     /**
+     * address
+     *
+     * @var string
+     */
+    protected $address = '';
+
+    /**
+     * zip
+     *
+     * @var string
+     */
+    protected $zip = '';
+
+    /**
+     * city
+     *
+     * @var string
+     */
+    protected $city = '';
+
+    /**
+     * state
+     *
+     * @var string
+     */
+    protected $state = '';
+
+    /**
+     * country, ISO 3166-1 alpha-2 code
+     *
+     * @var string
+     */
+    protected $country = '';
+
+    /**
+     * municipality
+     *
+     * @var string
+     */
+    protected $municipality = '';
+
+    /**
+     * phone
+     *
+     * @var string
+     */
+    protected $phone = '';
+
+    /**
+     * email
+     *
+     * @var string
+     */
+    protected $email = '';
+
+    /**
      * lat
      *
      * @var float
@@ -90,6 +146,166 @@ class Location extends AbstractEntity
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * Returns the address
+     *
+     * @return string $address
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Sets the address
+     *
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * Returns the zip
+     *
+     * @return string $zip
+     */
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * Sets the zip
+     *
+     * @param string $zip
+     */
+    public function setZip($zip)
+    {
+        $this->zip = $zip;
+    }
+
+    /**
+     * Returns the city
+     *
+     * @return string $city
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Sets the city
+     *
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * Returns the state
+     *
+     * @return string $state
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Sets the state
+     *
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * Returns the country
+     *
+     * @return string $country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Sets the country
+     *
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * Returns the municipality
+     *
+     * @return string $municipality
+     */
+    public function getMunicipality()
+    {
+        return $this->municipality;
+    }
+
+    /**
+     * Sets the municipality
+     *
+     * @param string $municipality
+     */
+    public function setMunicipality($municipality)
+    {
+        $this->municipality = $municipality;
+    }
+
+    /**
+     * Returns the phone
+     *
+     * @return string $phone
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Sets the phone
+     *
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * Returns the email
+     *
+     * @return string $email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Sets the email
+     *
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
     /**

@@ -61,8 +61,14 @@ The location record itself contains the following fields:
 
 *   Title
 *   Description
+*   Street, ZIP, City, State, Municipality, Country
+*   Phone, Email
 *   Latitude & Longitude
 *   Link
+
+The country is stored as its ISO 3166-1 alpha-2 code, e.g. :code:`AT`. None of
+the address fields are rendered by the templates shipped with the extension,
+they are meant to be used in your own templates.
 
 Organizer Simple
 ----------------

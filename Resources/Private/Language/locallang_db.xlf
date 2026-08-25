@@ -18,6 +18,36 @@
 			<trans-unit id="tx_eventnews_domain_model_location.description">
 				<source>Description</source>
 			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.palette.address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.palette.contact">
+				<source>Contact</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.address">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.zip">
+				<source>ZIP</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.state">
+				<source>State, province or region</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.municipality">
+				<source>Municipality</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_eventnews_domain_model_location.email">
+				<source>Email</source>
+			</trans-unit>
 			<trans-unit id="tx_eventnews_domain_model_location.lat">
 				<source>Lat</source>
 			</trans-unit>

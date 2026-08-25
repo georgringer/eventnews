@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace GeorgRinger\Eventnews\Tests\Functional\Tca;
 
+use GeorgRinger\Eventnews\Tca\CountryItemsProcFunc;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -63,6 +66,54 @@ class TcaTest extends FunctionalTestCase
         }
 
         return $cases;
+    }
+
+    #[Test]
+    #[DataProvider('addressColumnProvider')]
+    public function addressColumnsAreDefinedForLocation(string $column): void
+    {
+        self::assertArrayHasKey($column, $GLOBALS['TCA']['tx_eventnews_domain_model_location']['columns']);
+    }
+
+    #[Test]
+    #[DataProvider('addressColumnProvider')]
+    public function addressColumnsAreShownInTheLocationForm(string $column): void
+    {
+        $palettes = $GLOBALS['TCA']['tx_eventnews_domain_model_location']['palettes'];
+        $showitem = $palettes['address']['showitem'] . ',' . $palettes['contact']['showitem'];
+
+        self::assertContains($column, GeneralUtility::trimExplode(',', $showitem, true));
+    }
+
+    public static function addressColumnProvider(): array
+    {
+        $cases = [];
+        foreach (['address', 'zip', 'city', 'state', 'municipality', 'country', 'phone', 'email'] as $column) {
+            $cases[$column] = [$column];
+        }
+
+        return $cases;
+    }
+
+    /**
+     * TCA type "country" only exists since TYPO3 14, see
+     * Feature-99911-NewTCATypeCountry. On 13.4 the same ISO 3166-1 alpha-2
+     * codes are offered by a select filled from the Country API instead.
+     */
+    #[Test]
+    public function countryUsesTheTypeAvailableInTheCurrentCore(): void
+    {
+        $config = $GLOBALS['TCA']['tx_eventnews_domain_model_location']['columns']['country']['config'];
+
+        if ((new Typo3Version())->getMajorVersion() >= 14) {
+            self::assertSame('country', $config['type']);
+        } else {
+            self::assertSame('select', $config['type']);
+            self::assertSame(
+                CountryItemsProcFunc::class . '->populate',
+                $config['itemsProcFunc']
+            );
+        }
     }
 
     #[Test]
