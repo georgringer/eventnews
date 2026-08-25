@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GeorgRinger\Eventnews\Domain\Model\Dto;
 
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Model\Dto\Search;
 
 /**
  * This file is part of the "eventnews" Extension for TYPO3 CMS.
@@ -40,6 +41,34 @@ class Demand extends NewsDemand
         if (is_array($settings) && isset($settings['eventRestriction'])) {
             $this->eventRestriction = $settings['eventRestriction'];
         }
+    }
+
+    /**
+     * The date range of the search plugin narrows a single field, so an event
+     * that started before the range and ends inside or after it never matches,
+     * see #153. For an event listing the range is therefore taken off the
+     * search object and kept here instead, where
+     * ModifyDemandRepositoryEventListener turns it into a constraint that
+     * respects the event end.
+     */
+    public function setSearch(?Search $search = null): NewsDemand
+    {
+        if ($search !== null
+            && $this->getEventRestriction() === self::EVENT_RESTRICTION_ONLY_EVENTS
+            && in_array($search->getDateField(), ['', 'datetime'], true)
+            && ($search->getMinimumDate() !== '' || $search->getMaximumDate() !== '')
+        ) {
+            $this->setSearchDateFrom($search->getMinimumDate());
+            $this->setSearchDateTo($search->getMaximumDate());
+
+            // The caller keeps the untouched object, it is handed to the view
+            // to redisplay the form with the dates the visitor entered.
+            $search = clone $search;
+            $search->setMinimumDate('');
+            $search->setMaximumDate('');
+        }
+
+        return parent::setSearch($search);
     }
 
     /**

@@ -1,0 +1,7 @@
+"tx_news_domain_model_news",,,,,,,
+,"uid","pid","title","datetime","is_event","event_end","hidden"
+,1,1,"Spanning event",1772323200,1,1773187199,0
+,2,1,"Single day event",1772712000,1,0,0
+,3,1,"Later event",1773964800,1,0,0
+,4,1,"Earlier event",1771718400,1,0,0
+,5,1,"Late start on the last day",1773100770,1,0,0
