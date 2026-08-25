@@ -94,7 +94,9 @@ class ModifyDemandRepositoryEventListener
             // Time end
             $convertedDateEnd = strtotime($demand->getSearchDateTo() ?? '');
             if ($convertedDateEnd) {
-                $convertedDateEnd += 86350;
+                // The date names a whole day, so the range runs to its end,
+                // just like the month and year constraint above.
+                $convertedDateEnd += 86399;
             } else {
                 $convertedDateEnd = PHP_INT_MAX;
             }
